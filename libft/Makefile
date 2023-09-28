@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
+#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 14:30:05 by cprojean          #+#    #+#              #
-#    Updated: 2023/02/13 18:48:31 by cprojean         ###   ########.fr        #
+#    Updated: 2023/09/28 12:28:44 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,16 @@ SRCS_bonus =		ft_lstnew.c             \
 					ft_lstclear.c           \
 					ft_lstiter.c            \
 					ft_lstmap.c             \
+
+PRINTF		=		ft_print_address.c		\
+					ft_printf.c				\
+					ft_convert_hexa_maj.c	\
+					ft_convert_hexa_min.c	\
+					ft_putchar.c			\
+					ft_putstr.c				\
+					ft_putnbr.c				\
+					ft_putlnbr.c			\
+					which_varia.c			\
 
 OBJS =				${SRCS:.c=.o}
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
+#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/09/20 13:22:56 by cprojean         ###   ########.fr        #
+#    Updated: 2023/09/28 14:39:41 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ CFLAGS = -Wall -Wextra -Werror -g -Ofast
 
 libftFLAGS = -L./libft -lft
 
+LIB = libft/libft.a
+
 MKDIR = mkdir -p
 
 RM = rm -rf
@@ -37,27 +39,24 @@ DIR_SRCS = srcs/
 
 DIR_INCLUDES = ./inc/
 
-HEADERS = cub3d.h
+HEADERS = $(DIR_INCLUDES)cub3d.h
 
-SRCS =	
+SRCS =	$(DIR_SRCS)main.c	\
 
-OBJS =			$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
+OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
+ 
+all	:		makelib $(NAME)
 
-$(DIR_OBJ)%.o: %.c $(HEADERS)
+$(DIR_OBJ)%.o: %.c $(LIB) $(HEADERS)
 				@mkdir -p $(shell dirname $@)
-				$(CC) $(CFLAGS) -I inc -c $< -o $@
+				$(CC) -I/usr/include -Imlx_linux $(CFLAGS) -c $< -o $@
 
-%.o: %.c
-
-	$(CC) $(libftFLAGS) -I/usr/include -Imlx_linux -O3 $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS) $(libft) Makefile $(MLX) Makefile
-	$(MAKE) bonus -C libft
-	$(MAKE) all -C $(MLXDIR)
+$(NAME): $(LIB) $(OBJS) $(MLX) Makefile
 	$(CC) $(OBJS) -L$(MLXDIR) $(MLXFLAGS) $(libftFLAGS) -o $(NAME)
 
-
-all	:		$(NAME)
+makelib:
+			$(MAKE) -C libft
+			$(MAKE) all -C $(MLXDIR)
 
 clean :
 			$(MAKE) clean -C libft
@@ -73,4 +72,4 @@ re :		fclean all
 
 .PHONY : libft all clean re fclean
 
-.SILENT :	$(OBJS) $(MLXc) $(NAME) libft
+# .SILENT :	$(OBJS) $(MLXc) $(NAME) libft
