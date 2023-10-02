@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/01 20:59:43 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:20:15 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,4 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	* (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
