@@ -3,24 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
+#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/02 16:12:09 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/02 19:54:25 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifeq ($(shell uname -s), Linux)
-	MLXDIR		=	minilibx/
+	MLXLIB		=	minilibx/libmlx.a
 	MLXFLAGS	=	-lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lz
 	MLXINC		=	-I/usr/include -Iminilibx 
-	MLXLIB		=	minilibx/libmlx.a
+MLXDIR		=	minilibx/
 endif
 ifeq ($(shell uname -s), Darwin)
 	MLXDIR	=	./mlx/
 	MLXFLAGS =	-lmlx -framework OpenGL -framework AppKit
 	MLXINC		=	-Imlx
-	MLXLIB		=	mlx/libmlx.a
+	# MLXFLAGS	=	-lmlx -L/usr/lib -Iminilibx -lXext -lX11 -lz
+	MLXLIB		=	minilibx/libmlx_Darwin.a
 endif
 
 NAME = cub3d
@@ -28,6 +29,7 @@ NAME = cub3d
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Ofast
+
 
 libftFLAGS = -L./libft -lft
 
