@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/02 20:57:56 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/02 23:12:43 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,21 @@ int	moove_keys(int key, t_data *cube)
 	(void) cube;
 	ft_printf("key : %d\n", key);
 	if (key == W)
-	{
 		cube->j1->posy += -3;
-		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGTH);
-		draw_map2D(cube);
-		draw_player(cube);
-	}
-	if (key == S)
-	{
+	else if (key == S)
 		cube->j1->posy += 3;
-		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGTH);
-		draw_map2D(cube);
-		draw_player(cube);
-	}
-	if (key == A)
-	{
+	else if (key == A)
 		cube->j1->posx += -3;
-		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGTH);
-		draw_map2D(cube);
-		draw_player(cube);
-	}
-	if (key == D)
-	{
+	else if (key == D)
 		cube->j1->posx += 3;
+	if (key == W || key == S || key == A || key == D)
+	{
 		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
 		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGTH);
 		draw_map2D(cube);
 		draw_player(cube);
 	}
-	if (key == ESC)
+	else if (key == ESC)
 	{
 		close_window(cube);
 		exit (0);
@@ -56,11 +39,21 @@ int	moove_keys(int key, t_data *cube)
 	return (key);
 }
 
-int     close_window(t_data *cube)
+int	close_window(t_data *cube)
 {
+	int	index;
+
+	index = 0;
 	mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
 	mlx_destroy_window(cube->mlx_ptr, cube->mlx_win);
 	// mlx_destroy_display(cube->mlx_ptr);
+	while (index < 10)
+	{
+		free(cube->map[index]);
+		index++;
+	}
+	free(cube->map);
 	free(cube->mlx_ptr);
+	// free(cube);
 	exit (0);
 }

@@ -6,7 +6,7 @@
 #    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/02 19:54:25 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/02 23:18:11 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,14 +43,20 @@ DIR_OBJ = ./.obj/
 
 DIR_SRCS = srcs/
 
+DIR_GAME = $(DIR_SRCS)game/
+
+DIR_PARS = $(DIR_SRCS)parsing/
 
 DIR_INCLUDES = ./inc/
 
 HEADERS = $(DIR_INCLUDES)cub3d.h
 
 SRCS =	$(DIR_SRCS)main.c		\
-		$(DIR_SRCS)display.c	\
-		$(DIR_SRCS)hooks.c		\
+		$(DIR_GAME)display.c	\
+		$(DIR_GAME)hooks.c		\
+		$(DIR_GAME)game.c		\
+		$(DIR_GAME)drawing.c		\
+		$(DIR_PARS)bullshitmap.c		\
 		
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
  
