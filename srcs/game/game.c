@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:48 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:08:03 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	do_cube(t_data cube)
 	draw_map2D(&cube);
 	draw_player(&cube);
 	mlx_hook(cube.mlx_win, 2, (1L << 0), moove_keys, &cube);
+	mlx_hook(cube.mlx_win, ON_DESTROY, 0, close_window, &cube);
 	mlx_loop(cube.mlx_ptr);
 	mlx_destroy_image(cube.mlx_ptr, cube.img_ptr);
 	mlx_destroy_window(cube.mlx_ptr, cube.mlx_win);
