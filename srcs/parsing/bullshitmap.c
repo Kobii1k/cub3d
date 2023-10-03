@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bullshitmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:57 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/02 23:09:29 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:11:43 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 char	**create_map(int fd)
 {

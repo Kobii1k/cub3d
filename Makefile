@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
+#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/02 23:18:11 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/03 15:24:38 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifeq ($(shell uname -s), Linux)
 	MLXLIB		=	minilibx/libmlx.a
 	MLXFLAGS	=	-lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lz
-	MLXINC		=	-I/usr/include -Iminilibx 
+	MLXINC		=	-I/usr/include -Iminilibx
 MLXDIR		=	minilibx/
 endif
 ifeq ($(shell uname -s), Darwin)
@@ -39,7 +39,7 @@ MKDIR = mkdir -p
 
 RM = rm -rf
 
-DIR_OBJ = ./.obj/
+DIR_OBJ = .obj/
 
 DIR_SRCS = srcs/
 
@@ -47,7 +47,7 @@ DIR_GAME = $(DIR_SRCS)game/
 
 DIR_PARS = $(DIR_SRCS)parsing/
 
-DIR_INCLUDES = ./inc/
+DIR_INCLUDES = inc/
 
 HEADERS = $(DIR_INCLUDES)cub3d.h
 
@@ -57,14 +57,14 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)game.c		\
 		$(DIR_GAME)drawing.c		\
 		$(DIR_PARS)bullshitmap.c		\
-		
+
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
- 
+
 all	:		makelib $(NAME)
 
 $(DIR_OBJ)%.o: %.c $(HEADERS)
 				@mkdir -p $(shell dirname $@)
-				$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADERS) -Iminilibx -Ilibft
+				$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_INCLUDES) -Iminilibx -Ilibft
 
 $(NAME): $(LIB) $(MLXLIB) $(OBJS)
 	make -C $(MLXDIR)
