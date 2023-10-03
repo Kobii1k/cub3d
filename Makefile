@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/03 15:24:38 by mgagne           ###   ########.fr        #
+#    Updated: 2023/10/03 15:46:13 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifeq ($(shell uname -s), Linux)
 	MLXLIB		=	minilibx/libmlx.a
 	MLXFLAGS	=	-lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lz
-	MLXINC		=	-I/usr/include -Iminilibx
-MLXDIR		=	minilibx/
+	MLXINC		=	-I/usr/include -Iminilibx 
+	MLXDIR		=	minilibx/
 endif
 ifeq ($(shell uname -s), Darwin)
 	MLXDIR	=	./mlx/
@@ -29,7 +29,6 @@ NAME = cub3d
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Ofast
-
 
 libftFLAGS = -L./libft -lft
 
@@ -57,9 +56,9 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)game.c		\
 		$(DIR_GAME)drawing.c		\
 		$(DIR_PARS)bullshitmap.c		\
-
+		
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
-
+ 
 all	:		makelib $(NAME)
 
 $(DIR_OBJ)%.o: %.c $(HEADERS)
