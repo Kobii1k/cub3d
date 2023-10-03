@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:53 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:20:48 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 int	moove_keys(int key, t_data *cube)
 {
-	(void) cube;
 	ft_printf("key : %d\n", key);
 	if (key == W)
-		cube->j1->posy += -5;
+		cube->j1.posy += -5;
 	else if (key == S)
-		cube->j1->posy += 5;
+		cube->j1.posy += 5;
 	else if (key == A)
-		cube->j1->posx += -5;
+		cube->j1.posx += -5;
 	else if (key == D)
-		cube->j1->posx += 5;
+		cube->j1.posx += 5;
 	if (key == W || key == S || key == A || key == D)
 	{
+		mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
 		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGTH);
+		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
+		cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
+		&cube->bits_per_pixel, &cube->line_length, &cube->endian);
 		draw_map2D(cube);
 		draw_player(cube);
+		mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, \
+		cube->img_ptr, 0, 0);
 	}
 	else if (key == ESC)
 	{

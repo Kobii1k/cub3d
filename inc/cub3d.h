@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 16:05:01 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/04 00:17:17 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define ESC 65307
 # endif
 # define WINWIDTH 1000
-# define WINHEIGTH 1000
+# define WINHEIGHT 1000
 
 enum {
 	ON_KEYDOWN = 2,
@@ -53,6 +53,7 @@ typedef struct s_player
 typedef struct s_data
 {
 	char		**map;
+	int			count;
 	int			height;
 	int			width;
 	int			fov;
@@ -63,7 +64,7 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_player 	*j1;
+	t_player	j1;
 }			t_data;
 
 void	do_cube(t_data cube);
@@ -76,7 +77,7 @@ char	**create_map(int fd);
 void	draw_player(t_data *cube);
 void	draw_map2D(t_data *cube);
 void	draw_square(t_data *cube, int color, int index, int jdex);
-t_player	init_player(t_player *j1);
 char		**create_map(int fd);
+t_player	init_player(int index, int jdex);
 
 #endif

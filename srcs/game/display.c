@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:11:49 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/03 19:24:08 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *cube, int x, int y, int color)
 {
-	char	*dst;
+	int	*addr;
 
-	dst = data->img_addr + (y * data->line_length + x \
-	* (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	addr = (int *)cube->img_addr;
+	addr[y * WINWIDTH + x] = color;
 }

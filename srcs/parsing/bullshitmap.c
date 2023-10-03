@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:57 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:56 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:50:47 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ char	**create_map(int fd)
 		jdex = 0;
 		while (jdex < 10)
 		{
-			if ((jdex == 0 || index == 0) || ((jdex == 9 || index == 9)))
+			if (jdex == 4 && index == 4)
+				map[index][jdex] = 'N';
+			else if ((jdex == 0 || index == 0) || ((jdex == 9 || index == 9)))
 				map[index][jdex] = '1';
 			else if ((jdex * 3) % 5 == 0)
 				map[index][jdex] = '1';

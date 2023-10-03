@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:47:00 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:17:46 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,25 @@ void	draw_player(t_data *cube)
 	int	tmpx;
 	int	tmpy;
 
-	ft_printf("%d %d\n", cube->j1->posx, cube->j1->posy);
-	index_max = cube->j1->posx + 10;
-	tmpy = cube->j1->posy;
-	tmpx = cube->j1->posx;
-	jndex_max = cube->j1->posy + 10;
-	while (cube->j1->posx < index_max)
+	// ft_printf("%d %d\n", cube->j1.posx, cube->j1.posy);
+	index_max = cube->j1.posx + 10;
+	tmpy = cube->j1.posy;
+	tmpx = cube->j1.posx;
+	jndex_max = cube->j1.posy + 10;
+	while (cube->j1.posx < index_max)
 	{
-		cube->j1->posy = tmpy;
-		while (cube->j1->posy < jndex_max)
+		cube->j1.posy = tmpy;
+		while (cube->j1.posy < jndex_max)
 		{
-			my_mlx_pixel_put(cube, cube->j1->posx, cube->j1->posy, 0xFF0000);
-			cube->j1->posy += 1;
+			// ft_printf("%d %d\n", cube->j1.posx, cube->j1.posy);
+			my_mlx_pixel_put(cube, cube->j1.posx, cube->j1.posy, 0xFF0000);
+			cube->j1.posy++;
 		}
-		cube->j1->posx += 1;
+		cube->j1.posx++;
 	}
-	cube->j1->posx = tmpx;
-	cube->j1->posy = tmpy;
-	mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, cube->img_ptr, 0, 0);
+	cube->j1.posx = tmpx;
+	cube->j1.posy = tmpy;
+	// mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, cube->img_ptr, 0, 0);
 }
 
 void	draw_map2D(t_data *cube)
@@ -55,10 +56,25 @@ void	draw_map2D(t_data *cube)
 		while (jdex < 10)
 		{
 			if (cube->map[index][jdex] == '1')
+			{
 				color = 0x00FF00;
-			else
+				draw_square(cube, color, index, jdex);
+			}
+			else if (cube->map[index][jdex] == '0')
+			{
 				color = 0xF0F0F0;
-			draw_square(cube, color, index, jdex);
+				draw_square(cube, color, index, jdex);
+			}
+			else
+			{
+				if (cube->count == 0)
+				{
+					cube->j1 = init_player(index, jdex);
+					cube->count = 1;
+				}
+				color = 0xF0F0F0;
+				draw_square(cube, color, index, jdex);
+			}
 			jdex++;
 		}
 		index++;
@@ -69,8 +85,8 @@ void	draw_square(t_data *cube, int color, int index, int jdex)
 {
 	int	tmpind;
 	int	tmpjdex;
-	// t_player	j1;
 
+	(void)color;
 	index = index * 10;
 	jdex = jdex * 10;
 	tmpind = index;
@@ -78,10 +94,11 @@ void	draw_square(t_data *cube, int color, int index, int jdex)
 	while (index < tmpind + (WINWIDTH / 100))
 	{
 		jdex = tmpjdex;
-		while (jdex < tmpjdex + (WINHEIGTH / 100))
+		while (jdex < tmpjdex + (WINHEIGHT / 100))
 		{
+			// ft_printf("%d %d\n", index, jdex);
 			// j1 = axis_converter(*cube, index, jdex);
-			my_mlx_pixel_put(cube, jdex, index, color);
+			my_mlx_pixel_put(cube, index, jdex, color);
 			jdex++;
 		}
 		index++;

@@ -6,7 +6,7 @@
 #    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/03 15:46:13 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/03 18:20:06 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ NAME = cub3d
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Ofast
+CFLAGS = -Wall -Wextra -Werror -g3 -Ofast
 
 libftFLAGS = -L./libft -lft
 
@@ -67,7 +67,7 @@ $(DIR_OBJ)%.o: %.c $(HEADERS)
 
 $(NAME): $(LIB) $(MLXLIB) $(OBJS)
 	make -C $(MLXDIR)
-	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME)
+	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME) -fsanitize=address
 
 makelib:
 			$(MAKE) -C libft
