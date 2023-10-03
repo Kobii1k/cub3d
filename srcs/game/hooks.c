@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/02 23:12:43 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:18:53 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	moove_keys(int key, t_data *cube)
 	(void) cube;
 	ft_printf("key : %d\n", key);
 	if (key == W)
-		cube->j1->posy += -3;
+		cube->j1->posy += -5;
 	else if (key == S)
-		cube->j1->posy += 3;
+		cube->j1->posy += 5;
 	else if (key == A)
-		cube->j1->posx += -3;
+		cube->j1->posx += -5;
 	else if (key == D)
-		cube->j1->posx += 3;
+		cube->j1->posx += 5;
 	if (key == W || key == S || key == A || key == D)
 	{
 		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);

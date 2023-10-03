@@ -6,15 +6,15 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/02 23:12:05 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:01:22 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
 t_data		parse_map(char *str);
+void		print_map(char **str);
 int			verif_map_name(char *str);
-void	print_map(char **str);
 
 int main(int argc, char **argv)
 {
