@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/04 00:20:54 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:53:40 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	do_cube(t_data cube)
 {
-
 	cube.mlx_ptr = mlx_init();
 	if (cube.mlx_ptr == 0x0)
 		exit(1);
