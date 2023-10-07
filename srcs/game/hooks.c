@@ -6,14 +6,14 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:04:09 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:21:42 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int	is_wall(t_data *cube, int mode, int value);
-int	camera(int	key, t_data *cube);
+int	camera(int key, t_data *cube);
 
 int	moove_keys(int key, t_data *cube)
 {
@@ -26,18 +26,6 @@ int	moove_keys(int key, t_data *cube)
 		cube->j1.posx += -5;
 	else if (key == D && is_wall(cube, 0, +5) == 0)
 		cube->j1.posx += 5;
-	if (key == W || key == S || key == A || key == D)
-	{
-		mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
-		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
-		cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
-		&cube->bits_per_pixel, &cube->line_length, &cube->endian);
-		draw_map2D(cube);
-		draw_player(cube);
-		mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, \
-		cube->img_ptr, 0, 0);
-	}
 	else if (key == ESC)
 	{
 		close_window(cube);
@@ -50,37 +38,19 @@ int	camera(int	key, t_data *cube)
 {
 	if (key == LEFT_ARR)
 	{
-		// printf("angle : %f\n", cube->j1.player_angle);
 		cube->j1.player_angle -= 3;
 		if (cube->j1.player_angle < 0)
 			cube->j1.player_angle = 360;
-		// printf("angle : %f\n", cube->j1.player_angle);
-		// cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
-		// cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
 	}
 	else if (key == RIGHT_ARR)
 	{
-		// printf("angle : %f\n", cube->j1.player_angle);
 		cube->j1.player_angle += 3;
 		if (cube->j1.player_angle > 360)
 			cube->j1.player_angle = 0;
-		// printf("angle : %f\n", cube->j1.player_angle);
-		// cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
-		// cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
-			// cube->j1.player_angle -= 2 * M_PI;
 	}
-	if (key == LEFT_ARR || key == RIGHT_ARR)
-	{
-		mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
-		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
-		cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
-		&cube->bits_per_pixel, &cube->line_length, &cube->endian);
-		draw_map2D(cube);
-		draw_player(cube);
-		mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, \
-		cube->img_ptr, 0, 0);
-	}
+	if (key == LEFT_ARR || key == RIGHT_ARR || \
+		key == W || key == S || key == A || key == D)
+		display_game(cube);
 	return (key);
 }
 
@@ -146,3 +116,5 @@ int	close_window(t_data *cube)
 	// free(cube);
 	exit (0);
 }
+
+ 

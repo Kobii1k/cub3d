@@ -6,12 +6,11 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:09:31 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:21:34 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdio.h>
 
 t_player	axis_converter(t_data cube, int x, int y);
 

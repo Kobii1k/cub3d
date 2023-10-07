@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 18:46:20 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:22:07 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,5 @@ t_player	init_player(int index, int jdex)
 	j1.cam_dy = sin(j1.player_angle * M_PI) * 5;
 	return (j1);
 }
+
+ 

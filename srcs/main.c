@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:01:22 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:21:56 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_data		parse_map(char *str);
 void		print_map(char **str);
 int			verif_map_name(char *str);
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	cube;
+
 	if (argc != 2)
 	{
 		ft_printf("Your args sucks so much I can't even believe this\n");
@@ -87,3 +88,5 @@ int	verif_map_name(char *str)
 		return (-1);
 	return (0);
 }
+
+ 
