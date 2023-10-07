@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:21:34 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:38:35 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	draw_player(t_data *cube)
 	}
 	cube->j1.posx -= 5;
 	cube->j1.posy -= 5;
-	draw_vision(cube);
+	draw_lines(cube);
 }
 
-void	draw_vision(t_data *cube)
+void	draw_lines(t_data *cube)
 {
 	int		r;
 	int		x1;
@@ -68,7 +68,7 @@ void	draw_vision(t_data *cube)
 			y1 = r * sin(tmp_angle * M_PI / 180);
 			posx = floor((cube->j1.posx + x1) / 10);
 			posy = floor((cube->j1.posy + y1) / 10);
-			if ((posx >= 0 && posx <= 10) && (posy >= 0 && posy <= 9) && !(cube->map[posy][posx] == '1'))
+			if ((posx >= 0) && (posy >= 0) && !(cube->map[posy][posx] == '1'))
 				my_mlx_pixel_put(cube, cube->j1.posx + x1, cube->j1.posy + y1, 0xFE0000);
 			else
 				break ;
@@ -80,6 +80,7 @@ void	draw_vision(t_data *cube)
 	cube->j1.posy -= 5;
 }
 
+
 void	draw_map2D(t_data *cube)
 {
 	int	index;
@@ -88,26 +89,27 @@ void	draw_map2D(t_data *cube)
 
 	index = 0;
 	jdex = 0;
-	while (index < 10)
+	while (index < cube->height)
 	{
 		jdex = 0;
-		while (jdex < 10)
+		while (cube->map[index][jdex])
 		{
 			if (cube->map[index][jdex] == '1')
 			{
 				color = 0x00FF00;
-				draw_square(cube, color, jdex, index);
+				draw_square(cube, color, index, jdex);
 			}
 			else if (cube->map[index][jdex] == '0')
 			{
 				color = 0xF0F0F0;
-				draw_square(cube, color, jdex, index);
+				draw_square(cube, color, index, jdex);
 			}
-			else
+			else if (ft_isalpha(cube->map[index][jdex]) == 1)
 			{
+				// printf("%d %d\n", index, jdex);
 				if (cube->count == 0)
 				{
-					cube->j1 = init_player(index, jdex);
+					cube->j1 = init_player(jdex, index);
 					cube->count = 1;
 				}
 				color = 0xF0F0F0;
@@ -117,6 +119,7 @@ void	draw_map2D(t_data *cube)
 		}
 		index++;
 	}
+	ft_printf("drawn %d\n", index);
 }
 
 void	draw_square(t_data *cube, int color, int index, int jdex)
@@ -129,14 +132,12 @@ void	draw_square(t_data *cube, int color, int index, int jdex)
 	jdex = jdex * 10;
 	tmpind = index;
 	tmpjdex = jdex;
-	while (index < tmpind + (WINWIDTH / 100))
+	while (index < tmpind + 10)
 	{
 		jdex = tmpjdex;
-		while (jdex < tmpjdex + (WINHEIGHT / 100))
+		while (jdex < tmpjdex + 10)
 		{
-			// ft_printf("%d %d\n", index, jdex);
-			// j1 = axis_converter(*cube, index, jdex);
-			my_mlx_pixel_put(cube, index, jdex, color);
+			my_mlx_pixel_put(cube, jdex, index, color);
 			jdex++;
 		}
 		index++;
