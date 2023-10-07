@@ -6,13 +6,14 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/05 18:55:39 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:52:08 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int	is_wall(t_data *cube, int mode, int value);
+int	camera(int	key, t_data *cube);
 
 int	moove_keys(int key, t_data *cube)
 {
@@ -41,6 +42,28 @@ int	moove_keys(int key, t_data *cube)
 	{
 		close_window(cube);
 		exit (0);
+	}
+	return (camera(key, cube));
+}
+
+int	camera(int	key, t_data *cube)
+{
+	(void) cube;
+	if (key == LEFT_ARR)
+	{
+		cube->j1.player_angle -= 0.1;
+		if (cube->j1.player_angle < 0)
+			cube->j1.player_angle += 2 * M_PI;
+		cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
+		cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
+	}
+	if (key == RIGHT_ARR)
+	{
+		cube->j1.player_angle -= 0.1;
+		if (cube->j1.player_angle > 2 * M_PI)
+			cube->j1.player_angle -= 2 * M_PI;
+		cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
+		cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
 	}
 	return (key);
 }

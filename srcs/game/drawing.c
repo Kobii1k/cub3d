@@ -6,11 +6,12 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/04 00:17:46 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:18:58 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include <stdio.h>
 
 t_player	axis_converter(t_data cube, int x, int y);
 
@@ -21,7 +22,6 @@ void	draw_player(t_data *cube)
 	int	tmpx;
 	int	tmpy;
 
-	// ft_printf("%d %d\n", cube->j1.posx, cube->j1.posy);
 	index_max = cube->j1.posx + 10;
 	tmpy = cube->j1.posy;
 	tmpx = cube->j1.posx;
@@ -31,16 +31,23 @@ void	draw_player(t_data *cube)
 		cube->j1.posy = tmpy;
 		while (cube->j1.posy < jndex_max)
 		{
-			// ft_printf("%d %d\n", cube->j1.posx, cube->j1.posy);
 			my_mlx_pixel_put(cube, cube->j1.posx, cube->j1.posy, 0xFF0000);
 			cube->j1.posy++;
 		}
+
 		cube->j1.posx++;
 	}
 	cube->j1.posx = tmpx;
 	cube->j1.posy = tmpy;
-	// mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, cube->img_ptr, 0, 0);
+	// draw_vision(cube);
 }
+
+// void	draw_vision(t_data *cube)
+// {
+// 	int	index_max;
+	
+// 	index_max = cube->j1.posx + 50;
+// }
 
 void	draw_map2D(t_data *cube)
 {
@@ -104,6 +111,11 @@ void	draw_square(t_data *cube, int color, int index, int jdex)
 		index++;
 	}
 }
+
+// void	draw_line(t_data *cube, int index, int jdex)
+// {
+	
+// }
 
 // t_player	axis_converter(t_data cube, int x, int y)
 // {

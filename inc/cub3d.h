@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/05 14:59:46 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:30:57 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #  define A 0
 #  define S 1
 #  define D 2
+#  define RIGHT_ARR 123
+#  define LEFT_ARR 123
 #  define ESC 53
 # elif __linux__
 #  include "../minilibx/mlx.h"
@@ -30,6 +32,8 @@
 #  define A 97
 #  define S 115
 #  define D 100
+#  define RIGHT_ARR
+#  define LEFT_ARR
 #  define ESC 65307
 # endif
 # define WINWIDTH 1000
@@ -47,8 +51,11 @@ enum {
 
 typedef struct s_player
 {
-	int	posx;
-	int	posy;
+	int		posx;
+	int		posy;
+	double	player_angle;
+	double	cam_dx;
+	double	cam_dy;
 }				t_player;
 
 typedef struct s_data
