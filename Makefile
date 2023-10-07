@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
+#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/03 18:20:06 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/07 17:36:46 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ifeq ($(shell uname -s), Darwin)
 	MLXLIB		=	minilibx/libmlx_Darwin.a
 endif
 
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 

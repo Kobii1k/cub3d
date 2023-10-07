@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/05 23:30:57 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:54:20 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "math.h"
+# include <math.h>
+# include <stdio.h>
 
 # ifdef __APPLE__
 #  include "../mlx/mlx.h"
@@ -24,7 +25,7 @@
 #  define S 1
 #  define D 2
 #  define RIGHT_ARR 123
-#  define LEFT_ARR 123
+#  define LEFT_ARR 122
 #  define ESC 53
 # elif __linux__
 #  include "../minilibx/mlx.h"
@@ -32,8 +33,8 @@
 #  define A 97
 #  define S 115
 #  define D 100
-#  define RIGHT_ARR
-#  define LEFT_ARR
+#  define RIGHT_ARR 65363
+#  define LEFT_ARR 65361
 #  define ESC 65307
 # endif
 # define WINWIDTH 1000
@@ -87,5 +88,6 @@ void	draw_map2D(t_data *cube);
 void	draw_square(t_data *cube, int color, int index, int jdex);
 char		**create_map(int fd);
 t_player	init_player(int index, int jdex);
+void		draw_vision(t_data *cube);
 
 #endif

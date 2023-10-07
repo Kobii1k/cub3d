@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/05 23:52:08 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:07:56 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,38 @@ int	moove_keys(int key, t_data *cube)
 
 int	camera(int	key, t_data *cube)
 {
-	(void) cube;
 	if (key == LEFT_ARR)
 	{
-		cube->j1.player_angle -= 0.1;
+		// printf("angle : %f\n", cube->j1.player_angle);
+		cube->j1.player_angle -= 1;
 		if (cube->j1.player_angle < 0)
-			cube->j1.player_angle += 2 * M_PI;
-		cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
-		cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
+			cube->j1.player_angle = 360;
+		// printf("angle : %f\n", cube->j1.player_angle);
+		// cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
+		// cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
 	}
-	if (key == RIGHT_ARR)
+	else if (key == RIGHT_ARR)
 	{
-		cube->j1.player_angle -= 0.1;
-		if (cube->j1.player_angle > 2 * M_PI)
-			cube->j1.player_angle -= 2 * M_PI;
-		cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
-		cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
+		// printf("angle : %f\n", cube->j1.player_angle);
+		cube->j1.player_angle += 1;
+		if (cube->j1.player_angle > 360)
+			cube->j1.player_angle = 0;
+		// printf("angle : %f\n", cube->j1.player_angle);
+		// cube->j1.cam_dx = cos(cube->j1.player_angle) * 5;
+		// cube->j1.cam_dy = sin(cube->j1.player_angle) * 5;
+			// cube->j1.player_angle -= 2 * M_PI;
+	}
+	if (key == LEFT_ARR || key == RIGHT_ARR)
+	{
+		mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
+		mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
+		cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
+		cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
+		&cube->bits_per_pixel, &cube->line_length, &cube->endian);
+		draw_map2D(cube);
+		draw_player(cube);
+		mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, \
+		cube->img_ptr, 0, 0);
 	}
 	return (key);
 }
@@ -107,7 +123,7 @@ int	is_wall(t_data *cube, int mode, int value)
 			tmpy = floor((modif) / 10);
 		}
 	}
-	if (cube->map[tmpx][tmpy] == '1')
+	if (cube->map[tmpy][tmpx] == '1')
 		return (1);
 	return (0);
 }
