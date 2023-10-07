@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 19:07:56 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:04:09 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	camera(int	key, t_data *cube)
 	if (key == LEFT_ARR)
 	{
 		// printf("angle : %f\n", cube->j1.player_angle);
-		cube->j1.player_angle -= 1;
+		cube->j1.player_angle -= 3;
 		if (cube->j1.player_angle < 0)
 			cube->j1.player_angle = 360;
 		// printf("angle : %f\n", cube->j1.player_angle);
@@ -61,7 +61,7 @@ int	camera(int	key, t_data *cube)
 	else if (key == RIGHT_ARR)
 	{
 		// printf("angle : %f\n", cube->j1.player_angle);
-		cube->j1.player_angle += 1;
+		cube->j1.player_angle += 3;
 		if (cube->j1.player_angle > 360)
 			cube->j1.player_angle = 0;
 		// printf("angle : %f\n", cube->j1.player_angle);

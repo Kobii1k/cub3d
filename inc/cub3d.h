@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 18:54:20 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/07 20:16:06 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 #  define A 0
 #  define S 1
 #  define D 2
-#  define RIGHT_ARR 123
-#  define LEFT_ARR 122
+#  define RIGHT_ARR 124
+#  define LEFT_ARR 123
 #  define ESC 53
 # elif __linux__
 #  include "../minilibx/mlx.h"
@@ -76,18 +76,19 @@ typedef struct s_data
 	t_player	j1;
 }			t_data;
 
-void	do_cube(t_data cube);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		moove_keys(int key, t_data *cube);
-void	draw_player(t_data *cube);
-void	draw_map2D(t_data *cube);
-int		close_window(t_data *cube);
-char	**create_map(int fd);
-void	draw_player(t_data *cube);
-void	draw_map2D(t_data *cube);
-void	draw_square(t_data *cube, int color, int index, int jdex);
+void		do_cube(t_data cube);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			moove_keys(int key, t_data *cube);
+void		draw_player(t_data *cube);
+void		draw_map2D(t_data *cube);
+int			close_window(t_data *cube);
+char		**create_map(int fd);
+void		draw_player(t_data *cube);
+void		draw_map2D(t_data *cube);
+void		draw_square(t_data *cube, int color, int index, int jdex);
 char		**create_map(int fd);
 t_player	init_player(int index, int jdex);
 void		draw_vision(t_data *cube);
+int			is_wall(t_data *cube, int mode, int value);
 
 #endif
