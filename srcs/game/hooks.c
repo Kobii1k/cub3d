@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/09 17:01:14 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:09:25 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,20 @@
 
 int	is_wall(t_data *cube, int mode, int value);
 int	camera(int key, t_data *cube);
+int	release_keys(int key, t_data *cube);
+int	release_camera(int	key, t_data *cube);
 
 int	moove_keys(int key, t_data *cube)
 {
 	ft_printf("key : %d\n", key);
-	if (key == W && is_wall(cube, 1, -5) == 0)
-	{
-		cube->j1.posy += -5;
-		display_game(cube);
-	}
-	else if (key == S && is_wall(cube, 1, +5) == 0)
-	{
-		cube->j1.posy += 5;
-		display_game(cube);
-	}
-	else if (key == A && is_wall(cube, 0, -5) == 0)
-	{
-		cube->j1.posx += -5;
-		display_game(cube);
-	}
-	else if (key == D && is_wall(cube, 0, +5) == 0)
-	{
-		cube->j1.posx += 5;
-		display_game(cube);
-	}
+	if (key == W && is_wall(cube, 1, -2) == 0)
+		cube->keys[Wk] = 1;
+	else if (key == S && is_wall(cube, 1, +2) == 0)
+		cube->keys[Sk] = 1;
+	else if (key == A && is_wall(cube, 0, -2) == 0)
+		cube->keys[Ak] = 1;
+	else if (key == D && is_wall(cube, 0, +2) == 0)
+		cube->keys[Dk] = 1;
 	else if (key == ESC)
 	{
 		close_window(cube);
@@ -49,19 +39,32 @@ int	moove_keys(int key, t_data *cube)
 int	camera(int	key, t_data *cube)
 {
 	if (key == LEFT_ARR)
-	{
-		cube->j1.player_angle -= 5;
-		if (cube->j1.player_angle < 0)
-			cube->j1.player_angle += 360;
-		display_game(cube);
-	}
+		cube->keys[LEFT_ARRk] = 1;
 	else if (key == RIGHT_ARR)
-	{
-		cube->j1.player_angle += 5;
-		if (cube->j1.player_angle > 360)
-			cube->j1.player_angle -= 360;
-		display_game(cube);
-	}
+		cube->keys[RIGHT_ARRk] = 1;
+	return (key);
+}
+
+int	release_keys(int key, t_data *cube)
+{
+	ft_printf("release : %d\n", key);
+	if (key == W)
+		cube->keys[Wk] = 0;
+	else if (key == S)
+		cube->keys[Sk] = 0;
+	else if (key == A)
+		cube->keys[Ak] = 0;
+	else if (key == D)
+		cube->keys[Dk] = 0;
+	return (release_camera(key, cube));
+}
+
+int	release_camera(int	key, t_data *cube)
+{
+	if (key == LEFT_ARR)
+		cube->keys[LEFT_ARRk] = 0;
+	else if (key == RIGHT_ARR)
+		cube->keys[RIGHT_ARRk] = 0;
 	return (key);
 }
 
@@ -117,13 +120,54 @@ int	close_window(t_data *cube)
 	mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
 	mlx_destroy_window(cube->mlx_ptr, cube->mlx_win);
 	// mlx_destroy_display(cube->mlx_ptr);
-	while (index < 10)
+	while (index < cube->height)
 	{
 		free(cube->map[index]);
 		index++;
 	}
 	free(cube->map);
 	free(cube->mlx_ptr);
+	free(cube->keys);
 	// free(cube);
 	exit (0);
+}
+
+int	loop(t_data *cube)
+{
+	if (cube->keys[Wk] == 1 && is_wall(cube, 1, -2) == 0)
+	{
+		cube->j1.posy += -1;
+		display_game(cube);
+	}
+	if (cube->keys[Sk] == 1 && is_wall(cube, 1, +2) == 0)
+	{
+		cube->j1.posy += 1;
+		display_game(cube);
+	}
+	if (cube->keys[Ak] == 1 && is_wall(cube, 0, -2) == 0)
+	{
+		cube->j1.posx += -1;
+		display_game(cube);
+	}
+	if (cube->keys[Dk] == 1 && is_wall(cube, 0, +2) == 0)
+	{
+		cube->j1.posx += 1;
+		display_game(cube);		
+	}
+	if (cube->keys[LEFT_ARRk] == 1)
+	{
+		cube->j1.player_angle -= 1;
+		if (cube->j1.player_angle < 0)
+			cube->j1.player_angle += 360;
+		display_game(cube);
+	}
+	if (cube->keys[RIGHT_ARRk] == 1)
+	{
+		cube->j1.player_angle += 1;
+		if (cube->j1.player_angle > 360)
+			cube->j1.player_angle -= 360;
+		display_game(cube);
+	}
+	(void) cube;
+	return (0);
 }

@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/09 17:05:55 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:57:21 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-int	test(int key)
-{
-	printf("release : %d\n", key);
-	return (key);
-}
 
 void	do_cube(t_data cube)
 {
@@ -32,8 +26,8 @@ void	do_cube(t_data cube)
 	draw_player(&cube);
 	mlx_put_image_to_window(cube.mlx_ptr, cube.mlx_win, cube.img_ptr, 0, 0);
 	mlx_hook(cube.mlx_win, 2, (1L << 0), moove_keys, &cube);
-	mlx_hook(cube.mlx_win, 3, (1L << 1), test, &cube);
-	// mlx_hook(cube.mlx_win, 2, (1L << 3), moove_keys, &cube);
+	mlx_hook(cube.mlx_win, 3, (1L << 1), release_keys, &cube);
+	mlx_loop_hook(cube.mlx_ptr, loop, &cube);
 	mlx_hook(cube.mlx_win, ON_DESTROY, 0, close_window, &cube);
 	mlx_loop(cube.mlx_ptr);
 	mlx_destroy_image(cube.mlx_ptr, cube.img_ptr);

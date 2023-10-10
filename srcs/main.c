@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/09 17:06:04 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:04:59 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ t_data	parse_map(char *str)
 {
 	t_data	cube;
 	int		fd;
+	int		index;
 
+	index = 1;
 	if (verif_map_name(str) == -1)
 	{	
 		ft_printf("Error map extension\n");
@@ -47,6 +49,12 @@ t_data	parse_map(char *str)
 	}
 	ft_bzero(&cube, sizeof(t_data));
 	cube.map = create_map(fd, &cube);
+	cube.keys = malloc(sizeof(int) * 6);
+	while (index <= ESCk)
+	{
+		cube.keys[index] = 0;
+		index++;
+	}
 	print_map(&cube);
 	return (cube);
 }

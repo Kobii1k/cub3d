@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 10:52:46 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:04:12 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ enum {
 	ON_DESTROY = 17
 };
 
-// enum {
-// 	W = 13,
-// 	A = 12,
-// 	S = 1,
-// 	D = 2,
-// 	RIGHT_ARR = 124,
-// 	LEFT_ARR = 123,
-// 	ESC = 53
-// };
+enum {
+	Wk = 1,
+	Ak = 2,
+	Sk = 3,
+	Dk = 4,
+	RIGHT_ARRk = 5,
+	LEFT_ARRk = 6,
+	ESCk = 7
+};
 
 typedef struct s_player
 {
@@ -90,17 +90,20 @@ typedef struct s_data
 
 void		do_cube(t_data cube);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+char		**create_map(int fd, t_data *cube);
+t_player	init_player(int index, int jdex, char c);
+int			display_game(t_data *cube);
+
 int			moove_keys(int key, t_data *cube);
-void		draw_player(t_data *cube);
-void		draw_map2D(t_data *cube);
+int			release_keys(int key, t_data *cube);
 int			close_window(t_data *cube);
+int			loop(t_data *cube);
+
 void		draw_player(t_data *cube);
 void		draw_map2D(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
-char		**create_map(int fd, t_data *cube);
-t_player	init_player(int index, int jdex, char c);
 void		draw_lines(t_data *cube);
+
 int			is_wall(t_data *cube, int mode, int value);
-int			display_game(t_data *cube);
 
 #endif

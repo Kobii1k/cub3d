@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/09 17:01:17 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 11:19:16 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	draw_player(t_data *cube)
 	int	y1;
 	int	angle;
 
-	r = 5;
+	r = 4;
 	cube->j1.posx += 5;
 	cube->j1.posy += 5;
 	angle = 0;
 	while (angle < 360)
 	{
-		r = 5;
+		r = 4;
 		while (r > 0)
 		{
 			x1 = r * cos(angle * M_PI / 180);

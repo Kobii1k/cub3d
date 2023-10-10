@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/09 17:06:00 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:19:22 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_data *cube, int x, int y, int color)
 
 int	display_game(t_data *cube)
 {
-	mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
+	// mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
 	mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
 	cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
 	cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
