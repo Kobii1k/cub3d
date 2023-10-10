@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+         #
+#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/03 15:46:13 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/10 14:05:25 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ ifeq ($(shell uname -s), Darwin)
 	MLXLIB		=	minilibx/libmlx_Darwin.a
 endif
 
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Ofast
+CFLAGS = -Wall -Wextra -Werror -g3 -Ofast
 
 libftFLAGS = -L./libft -lft
 
@@ -55,6 +55,7 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)hooks.c		\
 		$(DIR_GAME)game.c		\
 		$(DIR_GAME)drawing.c		\
+		$(DIR_GAME)loop.c		\
 		$(DIR_PARS)bullshitmap.c		\
 		
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
@@ -67,7 +68,7 @@ $(DIR_OBJ)%.o: %.c $(HEADERS)
 
 $(NAME): $(LIB) $(MLXLIB) $(OBJS)
 	make -C $(MLXDIR)
-	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME)
+	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME) -fsanitize=address
 
 makelib:
 			$(MAKE) -C libft
