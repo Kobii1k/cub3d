@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/03 15:01:22 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:04:59 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
 t_data		parse_map(char *str);
-void		print_map(char **str);
+void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	cube;
+
 	if (argc != 2)
 	{
 		ft_printf("Your args sucks so much I can't even believe this\n");
@@ -32,7 +33,9 @@ t_data	parse_map(char *str)
 {
 	t_data	cube;
 	int		fd;
+	int		index;
 
+	index = 1;
 	if (verif_map_name(str) == -1)
 	{	
 		ft_printf("Error map extension\n");
@@ -45,21 +48,27 @@ t_data	parse_map(char *str)
 		exit(1);
 	}
 	ft_bzero(&cube, sizeof(t_data));
-	cube.map = create_map(fd);
-	print_map(cube.map);
+	cube.map = create_map(fd, &cube);
+	cube.keys = malloc(sizeof(int) * 6);
+	while (index <= ESCk)
+	{
+		cube.keys[index] = 0;
+		index++;
+	}
+	print_map(&cube);
 	return (cube);
 }
 
-void	print_map(char **str)
+void	print_map(t_data *cube)
 {
 	int	index;
 
-	if (!str)
+	if (!cube->map)
 		ft_printf("Error with the map");
 	index = 0;
-	while (index < 10)
+	while (index < cube->height)
 	{
-		ft_printf("%s\n", str[index]);
+		ft_printf("%s\n", cube->map[index]);
 		index++;
 	}
 }
