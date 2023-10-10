@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 13:04:12 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:50:07 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_data
 	t_player	j1;
 }			t_data;
 
-void		do_cube(t_data cube);
+int			do_cube(t_data *cube);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char		**create_map(int fd, t_data *cube);
 t_player	init_player(int index, int jdex, char c);
