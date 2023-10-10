@@ -3,59 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 14:04:59 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:02:54 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-t_data		parse_map(char *str);
+t_data		*parse_map(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 
 int	main(int argc, char **argv)
 {
-	t_data	cube;
+	t_data	*cube;
 
 	if (argc != 2)
 	{
 		ft_printf("Your args sucks so much I can't even believe this\n");
-		exit(1);
+		return (1);
 	}
 	cube = parse_map(argv[1]);
-	do_cube(cube);
+	if (!cube)
+		return (1);
+	if (do_cube(cube))
+		return (1);
+	return (0);
 }
 
-t_data	parse_map(char *str)
+int		check_map(char *str)
 {
-	t_data	cube;
-	int		fd;
-	int		index;
+	int	fd;
 
-	index = 1;
 	if (verif_map_name(str) == -1)
-	{	
+	{
 		ft_printf("Error map extension\n");
-		exit(1);
+		return (-1);
 	}
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-	{
 		ft_printf("Error on acces to file\n");
-		exit(1);
-	}
-	ft_bzero(&cube, sizeof(t_data));
-	cube.map = create_map(fd, &cube);
-	cube.keys = malloc(sizeof(int) * 6);
+	return (fd);
+}
+
+t_data	*parse_map(char *str)
+{
+	t_data	*cube;
+	int		fd;
+	int		index;
+
+	fd = check_map(str);
+	if (!fd)
+		return (NULL);
+	cube = malloc(sizeof(t_data));
+	if (!cube)
+		return (close(fd), NULL);
+	cube->map = create_map(fd, cube);
+	cube->keys = malloc(sizeof(int) * 6);
+	if (!cube->keys)
+		return (close(fd), free(cube), NULL);
+	index = 1;
 	while (index <= ESCk)
 	{
-		cube.keys[index] = 0;
+		cube->keys[index] = 0;
 		index++;
 	}
-	print_map(&cube);
+	print_map(cube);
 	return (cube);
 }
 
