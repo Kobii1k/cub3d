@@ -6,38 +6,30 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 14:09:25 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:33:55 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int	is_wall(t_data *cube, int mode, int value);
-int	camera(int key, t_data *cube);
 int	release_keys(int key, t_data *cube);
-int	release_camera(int	key, t_data *cube);
 
 int	moove_keys(int key, t_data *cube)
 {
-	ft_printf("key : %d\n", key);
-	if (key == W && is_wall(cube, 1, -2) == 0)
+	if (key == W)
 		cube->keys[Wk] = 1;
-	else if (key == S && is_wall(cube, 1, +2) == 0)
+	else if (key == S)
 		cube->keys[Sk] = 1;
-	else if (key == A && is_wall(cube, 0, -2) == 0)
+	else if (key == A)
 		cube->keys[Ak] = 1;
-	else if (key == D && is_wall(cube, 0, +2) == 0)
+	else if (key == D)
 		cube->keys[Dk] = 1;
 	else if (key == ESC)
 	{
 		close_window(cube);
 		exit (0);
 	}
-	return (camera(key, cube));
-}
-
-int	camera(int	key, t_data *cube)
-{
 	if (key == LEFT_ARR)
 		cube->keys[LEFT_ARRk] = 1;
 	else if (key == RIGHT_ARR)
@@ -47,7 +39,6 @@ int	camera(int	key, t_data *cube)
 
 int	release_keys(int key, t_data *cube)
 {
-	ft_printf("release : %d\n", key);
 	if (key == W)
 		cube->keys[Wk] = 0;
 	else if (key == S)
@@ -56,12 +47,7 @@ int	release_keys(int key, t_data *cube)
 		cube->keys[Ak] = 0;
 	else if (key == D)
 		cube->keys[Dk] = 0;
-	return (release_camera(key, cube));
-}
-
-int	release_camera(int	key, t_data *cube)
-{
-	if (key == LEFT_ARR)
+	else if (key == LEFT_ARR)
 		cube->keys[LEFT_ARRk] = 0;
 	else if (key == RIGHT_ARR)
 		cube->keys[RIGHT_ARRk] = 0;
@@ -112,6 +98,32 @@ int	is_wall(t_data *cube, int mode, int value)
 	return (0);
 }
 
+int	loop(t_data *cube)
+{
+	if (cube->keys[Wk] == 1 && is_wall(cube, 1, -2) == 0)
+		cube->j1.posy += -1;
+	if (cube->keys[Sk] == 1 && is_wall(cube, 1, +2) == 0)
+		cube->j1.posy += 1;
+	if (cube->keys[Ak] == 1 && is_wall(cube, 0, -2) == 0)
+		cube->j1.posx += -1;
+	if (cube->keys[Dk] == 1 && is_wall(cube, 0, +2) == 0)
+		cube->j1.posx += 1;
+	if (cube->keys[LEFT_ARRk] == 1)
+	{
+		cube->j1.player_angle -= 1;
+		if (cube->j1.player_angle < 0)
+			cube->j1.player_angle += 360;
+	}
+	if (cube->keys[RIGHT_ARRk] == 1)
+	{
+		cube->j1.player_angle += 1;
+		if (cube->j1.player_angle > 360)
+			cube->j1.player_angle -= 360;
+	}
+	display_game(cube);
+	return (0);
+}
+
 int	close_window(t_data *cube)
 {
 	int	index;
@@ -130,44 +142,4 @@ int	close_window(t_data *cube)
 	free(cube->keys);
 	// free(cube);
 	exit (0);
-}
-
-int	loop(t_data *cube)
-{
-	if (cube->keys[Wk] == 1 && is_wall(cube, 1, -2) == 0)
-	{
-		cube->j1.posy += -1;
-		display_game(cube);
-	}
-	if (cube->keys[Sk] == 1 && is_wall(cube, 1, +2) == 0)
-	{
-		cube->j1.posy += 1;
-		display_game(cube);
-	}
-	if (cube->keys[Ak] == 1 && is_wall(cube, 0, -2) == 0)
-	{
-		cube->j1.posx += -1;
-		display_game(cube);
-	}
-	if (cube->keys[Dk] == 1 && is_wall(cube, 0, +2) == 0)
-	{
-		cube->j1.posx += 1;
-		display_game(cube);		
-	}
-	if (cube->keys[LEFT_ARRk] == 1)
-	{
-		cube->j1.player_angle -= 1;
-		if (cube->j1.player_angle < 0)
-			cube->j1.player_angle += 360;
-		display_game(cube);
-	}
-	if (cube->keys[RIGHT_ARRk] == 1)
-	{
-		cube->j1.player_angle += 1;
-		if (cube->j1.player_angle > 360)
-			cube->j1.player_angle -= 360;
-		display_game(cube);
-	}
-	(void) cube;
-	return (0);
 }

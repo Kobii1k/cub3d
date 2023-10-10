@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 11:19:16 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:35:23 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ void	draw_lines(t_data *cube)
 			y1 = r * sin(tmp_angle * M_PI / 180);
 			posx = floor((cube->j1.posx + x1) / 10);
 			posy = floor((cube->j1.posy + y1) / 10);
-			if ((posx >= 0) && (posy >= 0) && !(cube->map[posy][posx] == '1'))
+			if ((posx >= 0) && (posy >= 0) && (cube->map[posy][posx] == '1'))
+			{
 				my_mlx_pixel_put(cube, cube->j1.posx + x1, cube->j1.posy + y1, 0xFE0000);
-			else
 				break ;
+			}
 			r++;
 		}
 		tmp_angle += 2;
