@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/10 14:05:25 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/10 15:20:31 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifeq ($(shell uname -s), Linux)
 	MLXLIB		=	minilibx/libmlx.a
 	MLXFLAGS	=	-lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lz
-	MLXINC		=	-I/usr/include -Iminilibx 
+	MLXINC		=	-I/usr/include -Iminilibx
 	MLXDIR		=	minilibx/
 endif
 ifeq ($(shell uname -s), Darwin)
@@ -56,10 +56,10 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)game.c		\
 		$(DIR_GAME)drawing.c		\
 		$(DIR_GAME)loop.c		\
-		$(DIR_PARS)bullshitmap.c		\
-		
+		$(DIR_PARS)map.c		\
+
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
- 
+
 all	:		makelib $(NAME)
 
 $(DIR_OBJ)%.o: %.c $(HEADERS)
