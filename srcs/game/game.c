@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 14:50:43 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:22:34 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ t_player	init_player(int index, int jdex, char c)
 
 	if (c == 'N')
 		j1.player_angle = 270;
-	if (c == 'E')
-		j1.player_angle = 0;
 	if (c == 'S')
 		j1.player_angle = 90;
+	if (c == 'E')
+		j1.player_angle = 0;
 	if (c == 'W')
 		j1.player_angle = 180;
 	j1.posx = index * 10;

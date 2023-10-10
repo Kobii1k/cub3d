@@ -6,15 +6,11 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 15:02:54 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:06:31 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-t_data		*parse_map(char *str);
-void		print_map(t_data *cube);
-int			verif_map_name(char *str);
 
 int	main(int argc, char **argv)
 {
@@ -30,84 +26,5 @@ int	main(int argc, char **argv)
 		return (1);
 	if (do_cube(cube))
 		return (1);
-	return (0);
-}
-
-int		check_map(char *str)
-{
-	int	fd;
-
-	if (verif_map_name(str) == -1)
-	{
-		ft_printf("Error map extension\n");
-		return (-1);
-	}
-	fd = open(str, O_RDONLY);
-	if (fd == -1)
-		ft_printf("Error on acces to file\n");
-	return (fd);
-}
-
-t_data	*parse_map(char *str)
-{
-	t_data	*cube;
-	int		fd;
-	int		index;
-
-	fd = check_map(str);
-	if (!fd)
-		return (NULL);
-	cube = malloc(sizeof(t_data));
-	if (!cube)
-		return (close(fd), NULL);
-	cube->map = create_map(fd, cube);
-	cube->keys = malloc(sizeof(int) * 6);
-	if (!cube->keys)
-		return (close(fd), free(cube), NULL);
-	index = 1;
-	while (index <= ESCk)
-	{
-		cube->keys[index] = 0;
-		index++;
-	}
-	print_map(cube);
-	return (cube);
-}
-
-void	print_map(t_data *cube)
-{
-	int	index;
-
-	if (!cube->map)
-		ft_printf("Error with the map");
-	index = 0;
-	while (index < cube->height)
-	{
-		ft_printf("%s\n", cube->map[index]);
-		index++;
-	}
-}
-
-int	verif_map_name(char *str)
-{
-	int	i;
-	int	tmp;
-
-	i = 0;
-	tmp = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '.')
-			tmp = i;
-		i++;
-	}
-	if (!str[tmp + 1] || str[tmp + 1] != 'c')
-		return (-1);
-	if (!str[tmp + 2] || str[tmp + 2] != 'u')
-		return (-1);
-	if (!str[tmp + 3] || str[tmp + 3] != 'b')
-		return (-1);
-	if (str[tmp + 4])
-		return (-1);
 	return (0);
 }

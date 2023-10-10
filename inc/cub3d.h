@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 14:50:07 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:20:21 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,32 @@ typedef struct s_data
 	t_player	j1;
 }			t_data;
 
-int			do_cube(t_data *cube);
+//display.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-char		**create_map(int fd, t_data *cube);
-t_player	init_player(int index, int jdex, char c);
 int			display_game(t_data *cube);
 
+//game.c
+int			do_cube(t_data *cube);
+t_player	init_player(int index, int jdex, char c);
+
+//hooks.c
+int			is_wall(t_data *cube, int mode, int value);
 int			moove_keys(int key, t_data *cube);
 int			release_keys(int key, t_data *cube);
 int			close_window(t_data *cube);
 int			loop(t_data *cube);
 
+//drawing.c
 void		draw_player(t_data *cube);
 void		draw_map2D(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
 
-int			is_wall(t_data *cube, int mode, int value);
+//map.c
+char		**create_map(int fd, t_data *cube);
+int			check_map(char *str);
+t_data		*parse_map(char *str);
+void		print_map(t_data *cube);
+int			verif_map_name(char *str);
 
 #endif
