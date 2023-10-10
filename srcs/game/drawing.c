@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 22:38:35 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:01:17 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	draw_player(t_data *cube)
 	int	y1;
 	int	angle;
 
-	r = 4;
+	r = 5;
 	cube->j1.posx += 5;
 	cube->j1.posy += 5;
 	angle = 0;
 	while (angle < 360)
 	{
-		r = 4;
+		r = 5;
 		while (r > 0)
 		{
 			x1 = r * cos(angle * M_PI / 180);
@@ -106,10 +106,9 @@ void	draw_map2D(t_data *cube)
 			}
 			else if (ft_isalpha(cube->map[index][jdex]) == 1)
 			{
-				// printf("%d %d\n", index, jdex);
 				if (cube->count == 0)
 				{
-					cube->j1 = init_player(jdex, index);
+					cube->j1 = init_player(jdex, index, cube->map[index][jdex]);
 					cube->count = 1;
 				}
 				color = 0xF0F0F0;
@@ -119,7 +118,6 @@ void	draw_map2D(t_data *cube)
 		}
 		index++;
 	}
-	ft_printf("drawn %d\n", index);
 }
 
 void	draw_square(t_data *cube, int color, int index, int jdex)
@@ -143,5 +141,3 @@ void	draw_square(t_data *cube, int color, int index, int jdex)
 		index++;
 	}
 }
-
- 

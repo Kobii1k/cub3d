@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:21:42 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:01:14 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,25 @@ int	moove_keys(int key, t_data *cube)
 {
 	ft_printf("key : %d\n", key);
 	if (key == W && is_wall(cube, 1, -5) == 0)
+	{
 		cube->j1.posy += -5;
+		display_game(cube);
+	}
 	else if (key == S && is_wall(cube, 1, +5) == 0)
+	{
 		cube->j1.posy += 5;
+		display_game(cube);
+	}
 	else if (key == A && is_wall(cube, 0, -5) == 0)
+	{
 		cube->j1.posx += -5;
+		display_game(cube);
+	}
 	else if (key == D && is_wall(cube, 0, +5) == 0)
+	{
 		cube->j1.posx += 5;
+		display_game(cube);
+	}
 	else if (key == ESC)
 	{
 		close_window(cube);
@@ -38,19 +50,18 @@ int	camera(int	key, t_data *cube)
 {
 	if (key == LEFT_ARR)
 	{
-		cube->j1.player_angle -= 3;
+		cube->j1.player_angle -= 5;
 		if (cube->j1.player_angle < 0)
-			cube->j1.player_angle = 360;
+			cube->j1.player_angle += 360;
+		display_game(cube);
 	}
 	else if (key == RIGHT_ARR)
 	{
-		cube->j1.player_angle += 3;
+		cube->j1.player_angle += 5;
 		if (cube->j1.player_angle > 360)
-			cube->j1.player_angle = 0;
-	}
-	if (key == LEFT_ARR || key == RIGHT_ARR || \
-		key == W || key == S || key == A || key == D)
+			cube->j1.player_angle -= 360;
 		display_game(cube);
+	}
 	return (key);
 }
 
@@ -116,5 +127,3 @@ int	close_window(t_data *cube)
 	// free(cube);
 	exit (0);
 }
-
- 

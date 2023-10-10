@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:55:28 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 10:52:46 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ enum {
 	ON_DESTROY = 17
 };
 
+// enum {
+// 	W = 13,
+// 	A = 12,
+// 	S = 1,
+// 	D = 2,
+// 	RIGHT_ARR = 124,
+// 	LEFT_ARR = 123,
+// 	ESC = 53
+// };
+
 typedef struct s_player
 {
 	int		posx;
@@ -63,6 +73,7 @@ typedef struct s_player
 typedef struct s_data
 {
 	char		**map;
+	int			*keys;
 	int			count;
 	int			height;
 	int			width;
@@ -87,7 +98,7 @@ void		draw_player(t_data *cube);
 void		draw_map2D(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 char		**create_map(int fd, t_data *cube);
-t_player	init_player(int index, int jdex);
+t_player	init_player(int index, int jdex, char c);
 void		draw_lines(t_data *cube);
 int			is_wall(t_data *cube, int mode, int value);
 int			display_game(t_data *cube);

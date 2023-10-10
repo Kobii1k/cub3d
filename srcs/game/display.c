@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/07 21:21:52 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:06:00 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,3 @@ int	display_game(t_data *cube)
 	cube->img_ptr, 0, 0);
 	return (0);
 }
-
- 
