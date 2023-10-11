@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 13:04:12 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:40:22 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 #  define LEFT_ARR 65361
 #  define ESC 65307
 # endif
-# define WINWIDTH 1000
-# define WINHEIGHT 1000
+# define WINWIDTH 1920
+# define WINHEIGHT 1080
 
 enum {
 	ON_KEYDOWN = 2,
