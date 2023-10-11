@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/11 14:20:29 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:05:33 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	draw_lines(t_data *cube)
 	posx = cube->j1.posx + 5;
 	posy = cube->j1.posy + 5;
 	r = 0;
-	tmp_angle = cube->j1.player_angle - 60;
+	cube->j1.posx += 5;
+	cube->j1.posy += 5;
+	tmp_angle = cube->j1.player_angle;
+	tmp_angle = tmp_angle - 60;
 	while (tmp_angle < cube->j1.player_angle + 60)
 	{
 		r = 0;
@@ -64,22 +67,23 @@ void	draw_lines(t_data *cube)
 		{
 			x1 = r * cos(tmp_angle * M_PI / 180);
 			y1 = r * sin(tmp_angle * M_PI / 180);
-			posx = floor((posx + x1) / 10);
-			posy = floor((posy + y1) / 10);
+			posx = floor((cube->j1.posx + x1) / 10);
+			posy = floor((cube->j1.posy + y1) / 10);
 			if ((posx >= 0) && (posy >= 0) && (cube->map[posy][posx] == '1'))
 			{
 				my_mlx_pixel_put(cube, cube->j1.posx + x1, cube->j1.posy + y1, 0xFE0000);
-				// raycast(cube, r);
 				break ;
 			}
 			r++;
 		}
 		tmp_angle += 2;
 	}
+	cube->j1.posx -= 5;
+	cube->j1.posy -= 5;
 }
 
 // void	raycast(t_data *data, int r)
-{/
+// {
 // 	int	index;
 // 	int	jdex;
 
@@ -90,7 +94,6 @@ void	draw_lines(t_data *cube)
 // 		jdex = 0;
 // 		while (jdex < WINHEIGHT)
 // 		{
-			
 // 			jdex++;
 // 		}
 // 		index++;
@@ -103,6 +106,7 @@ void	draw_map2D(t_data *cube)
 	int	jdex;
 	int	color;
 
+	color = 0;
 	index = 0;
 	jdex = 0;
 	while (index < cube->height)
