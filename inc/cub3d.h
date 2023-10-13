@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/11 12:40:22 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:53:24 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void		draw_player(t_data *cube);
 void		draw_map2D(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
+void		draw_vision(t_data *cube);
+void		draw_raycast(t_data *cube);
 
 int			is_wall(t_data *cube, int mode, int value);
 

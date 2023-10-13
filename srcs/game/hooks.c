@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/11 19:12:09 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/13 10:27:26 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ int	is_wall(t_data *cube, int mode, int value)
 int	loop(t_data *cube)
 {
 	if (cube->keys[Wk] == 1 && is_wall(cube, 1, -2) == 0)
-		cube->j1.posy += -1;
+		cube->j1.posy += -2;
 	if (cube->keys[Sk] == 1 && is_wall(cube, 1, +2) == 0)
-		cube->j1.posy += 1;
+		cube->j1.posy += 2;
 	if (cube->keys[Ak] == 1 && is_wall(cube, 0, -2) == 0)
-		cube->j1.posx += -1;
+		cube->j1.posx += -2;
 	if (cube->keys[Dk] == 1 && is_wall(cube, 0, +2) == 0)
-		cube->j1.posx += 1;
+		cube->j1.posx += 2;
 	if (cube->keys[LEFT_ARRk] == 1)
 	{
 		cube->j1.player_angle -= 1.5;

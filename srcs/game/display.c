@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 13:19:22 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:52:45 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	display_game(t_data *cube)
 	cube->img_ptr = mlx_new_image(cube->mlx_ptr, WINWIDTH, WINHEIGHT);
 	cube->img_addr = mlx_get_data_addr(cube->img_ptr, \
 	&cube->bits_per_pixel, &cube->line_length, &cube->endian);
+	draw_raycast(cube);
 	draw_map2D(cube);
 	draw_player(cube);
+	draw_vision(cube);
 	mlx_put_image_to_window(cube->mlx_ptr, cube->mlx_win, \
 	cube->img_ptr, 0, 0);
 	return (0);
