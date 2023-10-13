@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 16:33:55 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:12:09 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,13 @@ int	loop(t_data *cube)
 		cube->j1.posx += 1;
 	if (cube->keys[LEFT_ARRk] == 1)
 	{
-		cube->j1.player_angle -= 1;
+		cube->j1.player_angle -= 1.5;
 		if (cube->j1.player_angle < 0)
 			cube->j1.player_angle += 360;
 	}
 	if (cube->keys[RIGHT_ARRk] == 1)
 	{
-		cube->j1.player_angle += 1;
+		cube->j1.player_angle += 1.5;
 		if (cube->j1.player_angle > 360)
 			cube->j1.player_angle -= 360;
 	}
