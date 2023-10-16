@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/13 12:53:24 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/16 10:56:21 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ enum {
 
 typedef struct s_player
 {
-	int		posx;
-	int		posy;
+	float	vect[2];
+	int		next_pos[2];
+	double		posx;
+	double		posy;
 	double	player_angle;
 	double	cam_dx;
 	double	cam_dy;
@@ -94,7 +96,7 @@ char		**create_map(int fd, t_data *cube);
 t_player	init_player(int index, int jdex, char c);
 int			display_game(t_data *cube);
 
-int			moove_keys(int key, t_data *cube);
+int			press_keys(int key, t_data *cube);
 int			release_keys(int key, t_data *cube);
 int			close_window(t_data *cube);
 int			loop(t_data *cube);
@@ -105,6 +107,7 @@ void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
 void		draw_vision(t_data *cube);
 void		draw_raycast(t_data *cube);
+void		add_vect(t_data *cube, int x, int y);
 
 int			is_wall(t_data *cube, int mode, int value);
 

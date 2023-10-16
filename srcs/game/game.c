@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 13:57:21 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:09:04 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	do_cube(t_data cube)
 	draw_map2D(&cube);
 	draw_player(&cube);
 	mlx_put_image_to_window(cube.mlx_ptr, cube.mlx_win, cube.img_ptr, 0, 0);
-	mlx_hook(cube.mlx_win, 2, (1L << 0), moove_keys, &cube);
+	mlx_hook(cube.mlx_win, 2, (1L << 0), press_keys, &cube);
 	mlx_hook(cube.mlx_win, 3, (1L << 1), release_keys, &cube);
 	mlx_loop_hook(cube.mlx_ptr, loop, &cube);
 	mlx_hook(cube.mlx_win, ON_DESTROY, 0, close_window, &cube);
@@ -49,7 +49,10 @@ t_player	init_player(int index, int jdex, char c)
 		j1.player_angle = 180;
 	j1.posx = index * 10;
 	j1.posy = jdex * 10;
-	j1.cam_dx = cos(j1.player_angle * M_PI) * 5;
-	j1.cam_dy = sin(j1.player_angle * M_PI) * 5;
+	j1.cam_dx = cos(j1.player_angle * M_PI / 180);
+	j1.cam_dy = sin(j1.player_angle * M_PI / 180);
+	j1.vect[0] = j1.cam_dx;
+	j1.vect[1] = j1.cam_dy;
+	printf("%f, %f\n", j1.cam_dx, j1.cam_dy);
 	return (j1);
 }
