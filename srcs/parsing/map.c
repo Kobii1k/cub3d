@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/10 15:19:58 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/17 18:50:39 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ char	**create_map(int fd, t_data *cube)
 	return (map);
 }
 
-t_data	*parse_map(char *str)
+t_data	*init_cube(char *str)
 {
 	t_data	*cube;
 	int		fd;
 	int		index;
 
 	fd = check_map(str);
-	if (!fd)
+	if (fd == -1)
 		return (NULL);
 	cube = malloc(sizeof(t_data));
 	if (!cube)
@@ -71,16 +71,23 @@ t_data	*parse_map(char *str)
 
 int		check_map(char *str)
 {
-	int	fd;
+	t_parse	*parse;
+	int		fd;
 
 	if (verif_map_name(str) == -1)
 	{
-		ft_printf("Error map extension\n");
+		ft_printf("map error : bad file extension\n");
 		return (-1);
 	}
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		ft_printf("Error on acces to file\n");
+	{
+		ft_printf("map error : no access to file\n");
+		return (-1);
+	}
+	parse = parse_map(fd);
+	if (!parse)
+		return (-1);
 	return (fd);
 }
 
@@ -89,7 +96,7 @@ void	print_map(t_data *cube)
 	int	index;
 
 	if (!cube->map)
-		ft_printf("Error with the map");
+		ft_printf("Error with the map\n");
 	index = 0;
 	while (index < cube->height)
 	{

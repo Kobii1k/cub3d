@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 15:20:21 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:13:30 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@ typedef struct s_data
 	t_player	j1;
 }			t_data;
 
+typedef struct s_parse
+{
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+
+	char	*ceiling;
+	char	*floor;
+}			t_parse;
+
 //display.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			display_game(t_data *cube);
@@ -112,8 +123,13 @@ void		draw_lines(t_data *cube);
 //map.c
 char		**create_map(int fd, t_data *cube);
 int			check_map(char *str);
-t_data		*parse_map(char *str);
+t_data		*init_cube(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
+
+//parsing.c
+t_parse		*parse_map(int fd);
+
+
 
 #endif
