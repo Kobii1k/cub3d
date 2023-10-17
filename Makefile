@@ -6,7 +6,7 @@
 #    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/15 13:07:17 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/17 12:58:50 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)loop.c		\
 		$(DIR_GAME)lines.c		\
 		$(DIR_GAME)raycast.c	\
+		$(DIR_GAME)move.c		\
 		$(DIR_PARS)bullshitmap.c\
 		
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))

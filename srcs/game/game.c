@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/16 11:09:04 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/17 14:31:06 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ t_player	init_player(int index, int jdex, char c)
 	j1.cam_dy = sin(j1.player_angle * M_PI / 180);
 	j1.vect[0] = j1.cam_dx;
 	j1.vect[1] = j1.cam_dy;
-	printf("%f, %f\n", j1.cam_dx, j1.cam_dy);
 	return (j1);
 }

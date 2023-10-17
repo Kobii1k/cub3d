@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/16 16:13:17 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:00:47 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		is_wall(t_data *cube, int mode, int value);
 int		release_keys(int key, t_data *cube);
-void	add_vect(t_data *cube, int x, int y);
+// void	add_vect(t_data *cube);
 
 int	press_keys(int key, t_data *cube)
 {
@@ -99,20 +99,10 @@ int	is_wall(t_data *cube, int mode, int value)
 	return (0);
 }
 
-void	add_vect(t_data *cube, int x, int y)
-{
-	int	vect[2];
-
-	vect[0] = x;
-	vect[1] = y;
-	printf("BEFORE : x %f, x : %d\n", cube->j1.vect[0], vect[0]);
-	printf("BEFORE : y %f, y : %d\n", cube->j1.vect[1], vect[1]);
-	cube->j1.vect[0] = cos((cube->j1.vect[0] + vect[0]) * cube->j1.player_angle);
-	cube->j1.vect[1] = sin((cube->j1.vect[1] + vect[1]) * cube->j1.player_angle);
-	cube->j1.posx = floor(cube->j1.posx + cube->j1.vect[0]);
-	cube->j1.posy = floor(cube->j1.posy + cube->j1.vect[1]);
-	printf("ADD : x %f, y : %f\n", cube->j1.vect[0], cube->j1.vect[1]);
-}
+// void	add_vect(t_data *cube)
+// {
+ 
+// }
 
 int	close_window(t_data *cube)
 {
