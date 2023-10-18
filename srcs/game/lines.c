@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/13 13:05:48 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:08:28 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void do_line(t_data *cube, double tmp_angle, int r);
 void	draw_vision(t_data *cube)
 {
 	int		r;
-	int		posx;
-	int		posy;
 	double	tmp_angle;
 
-	posx = cube->j1.posx + 5;
-	posy = cube->j1.posy + 5;
 	r = 0;
 	cube->j1.posx += 5;
 	cube->j1.posy += 5;

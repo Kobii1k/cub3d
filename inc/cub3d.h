@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 13:16:17 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:14:02 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void	move_down(t_data *cube);
 void	move_left(t_data *cube);
 void	move_right(t_data *cube);
 
-int			is_wall(t_data *cube, int mode, int value);
+int		is_wall(t_data *cube, double posx, double posy);
 
 #endif

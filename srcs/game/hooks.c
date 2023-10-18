@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 13:00:47 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:55:10 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int		is_wall(t_data *cube, int mode, int value);
 int		release_keys(int key, t_data *cube);
 // void	add_vect(t_data *cube);
 
@@ -55,54 +54,17 @@ int	release_keys(int key, t_data *cube)
 	return (key);
 }
 
-int	is_wall(t_data *cube, int mode, int value)
+int	is_wall(t_data *cube, double posx, double posy)
 {
-	int	modif;
-	int	tmpx;
-	int	tmpy;
-
-	tmpx = 0;
-	tmpy = 0;
-	if (mode == 0)
-		modif = cube->j1.posx;
-	else
-		modif = cube->j1.posy;
-	modif = modif + value;
-	if (value > 0)
-	{
-		if (mode == 0)
-		{
-			tmpx = floor((modif + 5) / 10);
-			tmpy = floor((cube->j1.posy + 5) / 10);
-		}
-		else if (mode == 1)
-		{
-			tmpx = floor((cube->j1.posx + 5) / 10);
-			tmpy = floor((modif + 5) / 10);
-		}
-	}
-	else
-	{
-		if (mode == 0)
-		{
-			tmpx = floor((modif) / 10);
-			tmpy = floor((cube->j1.posy) / 10);
-		}
-		else if (mode == 1)
-		{
-			tmpx = floor((cube->j1.posx) / 10);
-			tmpy = floor((modif) / 10);
-		}
-	}
-	if (cube->map[tmpy][tmpx] == '1')
+	if (posy <= 0 || posx <= 0)
+		return (1);
+	posx = floor(posx + 5) / 10;
+	posy = floor(posy + 5) / 10;
+	printf("%f, %f\n", posx, posy);
+	if (cube->map[(int)posy][(int)posx] == '1')
 		return (1);
 	return (0);
 }
-
-// void	add_vect(t_data *cube)
-// {
- 
-// }
 
 int	close_window(t_data *cube)
 {
