@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:48:24 by cprojean          #+#    #+#             */
-/*   Updated: 2023/02/10 15:43:27 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:02:03 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,18 @@ char	*ft_strnjoin(char *s1, char *s2, size_t index)
 		return (free(s1), NULL);
 	while (runner < sizearray && s1[runner] != '\0')
 	{
-		array[runner] = s1[runner];
+		if (s1[runner] != 10)
+			array[runner] = s1[runner];
+		else
+			array[runner] = '\0';
 		runner++;
 	}
 	while (runner < sizearray + index)
 	{
-		array[runner] = s2[runner - sizearray];
+		if (s2[runner - sizearray] != 10)
+			array[runner] = s2[runner - sizearray];
+		else
+			array[runner] = '\0';
 		runner++;
 	}
 	array[runner] = '\0';

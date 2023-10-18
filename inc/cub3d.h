@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/11 16:13:30 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:40:53 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,8 @@ typedef struct s_parse
 	char	*south;
 	char	*east;
 	char	*west;
-
-	char	*ceiling;
-	char	*floor;
+	int		ceiling;
+	int		floor;
 }			t_parse;
 
 //display.c
@@ -130,6 +129,7 @@ int			verif_map_name(char *str);
 //parsing.c
 t_parse		*parse_map(int fd);
 
-
+void		free_s(char **split);
+void		free_parse(t_parse *p);
 
 #endif
