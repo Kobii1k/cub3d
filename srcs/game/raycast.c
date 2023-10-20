@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/20 14:45:29 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:53:12 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	draw_raycast(t_data *cube)
 
 	index = 0;
 	r = 0;
-	tmp_angle = cube->j1.player_angle - 60;
-	// if (tmp_angle < 0)
-	// 	tmp_angle = 360 - tmp_angle;
-	while (index < 1920)
+	tmp_angle = cube->j1.player_angle - cube->j1.fov / 2;
+	while (index < WINWIDTH)
 	{
 		r = 0.01;
 		while (r < 800)
@@ -45,7 +43,7 @@ void	draw_raycast(t_data *cube)
 				r += 1;
 		}
 		index++;
-		tmp_angle += (double)120/WINWIDTH;
+		tmp_angle += (double)cube->j1.fov/WINWIDTH;
 	}
 }
 
@@ -83,13 +81,7 @@ static double	hyp_size(t_data *cube, double tmp_angle, double r)
 	double	y1;
 	double	tmpx;
 	double	tmpy;
-	double	posx;
-	double	posy;
-	
-	x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
-	y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
-	posx = (cube->j1.posx + x1 + 5) / 10;
-	posy = (cube->j1.posy + y1 + 5) / 10;
+
 	x1 = r * cosf(tmp_angle * M_PI / 180);
 	y1 = r * sinf(tmp_angle * M_PI / 180);
 	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
@@ -110,20 +102,21 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle, double 
 {
 	double	limit;
 	int		jdex;
-	double	dist;
-
+	// double	dist;
+	(void) hyp;
 	(void) r;
 	jdex = 0;
-	dist = (double) hyp * cosf(tmp_angle * M_PI / 180) * 1000;
-	printf("angle : %f\n", tmp_angle);
-	printf("player angle : %f\n", cube->j1.player_angle);
-	// limit = floor((1 / r) * 1000);
-	limit = floor((1 / dist) * 10000 * 2);
-	// if (limit < 0)
-	// 	limit = limit * -1;
+	// dist = (double) hyp * cosf(tmp_angle * M_PI / 180);
+	// printf("angle : %f\n", tmp_angle);
+	// printf("player angle : %f\n", cube->j1.player_angle);
+	// printf("hyp : %f opp : %f r : %f\n", hyp, hyp * sinf(tmp_angle * M_PI / 180), r);
+	// printf("limit : %f\n", limit);
+	// limit = (1 / dist) * 500;
+	// printf("limit : %f\n", limit);
 	// limit = (double)((1 / dist) * 100 * 2);
 	// printf("size hypothenuse %f, other : %f\n", limit, floor((1 / r) * 1000));
-	// limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 1000);
+	// limit = floor((1 / r) * 1000);
+	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 1000);
 	while (jdex < WINHEIGHT)
 	{
 		if ((jdex >= (WINHEIGHT / 2) - limit) && (jdex <= (WINHEIGHT / 2) + limit))

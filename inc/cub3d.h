@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 19:14:02 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:47:03 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_player
 	double	player_angle;
 	double	cam_dx;
 	double	cam_dy;
+	int			fov;
 }				t_player;
 
 typedef struct s_data
@@ -79,7 +80,6 @@ typedef struct s_data
 	int			count;
 	int			height;
 	int			width;
-	int			fov;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	void		*img_ptr;
