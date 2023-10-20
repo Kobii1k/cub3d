@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 19:55:10 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:40:46 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	is_wall(t_data *cube, double posx, double posy)
 		return (1);
 	posx = floor(posx + 5) / 10;
 	posy = floor(posy + 5) / 10;
-	printf("%f, %f\n", posx, posy);
 	if (cube->map[(int)posy][(int)posx] == '1')
 		return (1);
 	return (0);
