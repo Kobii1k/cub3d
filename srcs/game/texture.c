@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/21 16:54:31 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:04:32 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ void    open_textures(t_data *cube)
 
 	size = 100;
     cube->ntexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "../../img/north.xpm", &size, &size);
+	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, &cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, &cube->ntexture.endian);
     cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "../../img/south.xpm", &size, &size);
+	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, &cube->stexture.bits_per_pixel, &cube->stexture.line_length, &cube->stexture.endian);
     cube->etexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "../../img/east.xpm", &size, &size);
+	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, &cube->etexture.bits_per_pixel, &cube->etexture.line_length, &cube->etexture.endian);
     cube->wtexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "../../img/west.xpm", &size, &size);
+	cube->wtexture.img_addr = mlx_get_data_addr(cube->wtexture.img_ptr, &cube->wtexture.bits_per_pixel, &cube->wtexture.line_length, &cube->wtexture.endian);
 }
 
 void	wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy)
 {
-	// printf("pos %f %f\n", posx, posy);
-	// printf("tmp %f %f\n", tmpx, tmpy);
 	if (cube->map[(int)tmpy][(int)posx] == '1')
 	{
 		if (tmpy > posy)
@@ -51,14 +53,11 @@ double	ft_modf(double nbr, double div)
 
 	mod = 0.0;
 	mod = nbr - (nbr / div);
-	// printf("%f\n", mod);
 	return (mod);
 }
 
 void	draw_textures(t_data *cube, double index, double jdex)
 {
-	// printf("raypos[0] %f\n", ft_modf(cube->raypos[0], 10) * 10);
-	// printf("raypos[1] %f\n", ft_modf(cube->raypos[1], 10) * 10);
 	if (cube->ray == 'S')
 	{
 		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->stexture, (int)(ft_modf(cube->raypos[0], 10) * 100), (int)(ft_modf(cube->raypos[1], 10) * 100)));
