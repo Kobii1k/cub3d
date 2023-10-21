@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/20 17:28:24 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/21 15:57:48 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	test_angle(t_data *cube, double tmp_angle, double r)
 	double	tmpy;
 	double	posx;
 	double	posy;
+	double	raypos[2];
 
 	x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
 	y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
@@ -64,6 +65,10 @@ static int	test_angle(t_data *cube, double tmp_angle, double r)
 	y1 = r * sinf(tmp_angle * M_PI / 180);
 	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
 	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
+	raypos[0] = tmpx;
+	raypos[1] = tmpy;
+	cube->raypos[0] = raypos[0];
+	cube->raypos[1] = raypos[1];
 	if ((tmpx >= 0) && (tmpy >= 0) && (cube->map[(int)tmpy][(int)tmpx] == '1'))
 		return (wich_wall(cube, tmpx, tmpy, posx, posy), 1);
 	else

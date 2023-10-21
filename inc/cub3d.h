@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/20 17:18:47 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/21 15:23:03 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,8 @@ typedef struct s_player
 	int		fov;
 }				t_player;
 
-typedef struct s_data
+typedef struct s_frame
 {
-	char		**map;
-	int			*keys;
-	int			count;
-	int			height;
-	int			width;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	void		*img_ptr;
@@ -87,12 +82,28 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+}				t_frame;
+
+typedef struct s_data
+{
+	char		**map;
+	int			*keys;
+	int			count;
+	int			height;
+	int			width;
 	char		ray;
+	double		raypos[2];
+	t_frame		window;
+	t_frame		ntexture;
+	t_frame		stexture;
+	t_frame		etexture;
+	t_frame		wtexture;
 	t_player	j1;
-}			t_data;
+}				t_data;
 
 void		do_cube(t_data cube);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			my_mlx_pixel_get(t_frame *image, int x, int y);
 char		**create_map(int fd, t_data *cube);
 t_player	init_player(int index, int jdex, char c);
 int			display_game(t_data *cube);
@@ -110,11 +121,14 @@ void		draw_vision(t_data *cube);
 void		draw_raycast(t_data *cube);
 void		add_vect(t_data *cube);
 
-void	move_up(t_data *cube);
-void	move_down(t_data *cube);
-void	move_left(t_data *cube);
-void	move_right(t_data *cube);
+void		move_up(t_data *cube);
+void		move_down(t_data *cube);
+void		move_left(t_data *cube);
+void		move_right(t_data *cube);
 
-int		is_wall(t_data *cube, double posx, double posy);
+int			is_wall(t_data *cube, double posx, double posy);
+void		wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy);
+void		draw_textures(t_data *cube, double index, double jdex);
+void		open_textures(t_data *cube);
 
 #endif

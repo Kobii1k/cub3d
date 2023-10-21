@@ -6,13 +6,14 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/19 11:40:46 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:26:30 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		release_keys(int key, t_data *cube);
+int	is_wall(t_data *cube, double posx, double posy);
 // void	add_vect(t_data *cube);
 
 int	press_keys(int key, t_data *cube)
@@ -70,17 +71,17 @@ int	close_window(t_data *cube)
 	int	index;
 
 	index = 0;
-	mlx_destroy_image(cube->mlx_ptr, cube->img_ptr);
-	mlx_destroy_window(cube->mlx_ptr, cube->mlx_win);
-	// mlx_destroy_display(cube->mlx_ptr);
+	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
+	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
+	// mlx_destroy_display(cube->window.mlx_ptr);
 	while (index < cube->height)
 	{
 		free(cube->map[index]);
 		index++;
 	}
 	free(cube->map);
-	free(cube->mlx_ptr);
 	free(cube->keys);
+	free(cube->window.mlx_ptr);
 	// free(cube);
 	exit (0);
 }

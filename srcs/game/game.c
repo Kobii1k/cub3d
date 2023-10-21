@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/20 16:46:41 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:02:32 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 void	do_cube(t_data cube)
 {
-	cube.mlx_ptr = mlx_init();
-	if (cube.mlx_ptr == 0x0)
+	t_frame	window;
+
+	ft_bzero(&window, sizeof(t_frame));
+	window.mlx_ptr = mlx_init();
+	if (window.mlx_ptr == 0x0)
 		exit(1);
-	cube.mlx_win = mlx_new_window(cube.mlx_ptr, WINWIDTH, WINHEIGHT, "cub3d");
-	cube.img_ptr = mlx_new_image(cube.mlx_ptr, WINWIDTH, WINHEIGHT);
-	cube.img_addr = mlx_get_data_addr(cube.img_ptr, &cube.bits_per_pixel, \
-	&cube.line_length, &cube.endian);
+	window.mlx_win = mlx_new_window(window.mlx_ptr, WINWIDTH, WINHEIGHT, "cub3d");
+	window.img_ptr = mlx_new_image(window.mlx_ptr, WINWIDTH, WINHEIGHT);
+	window.img_addr = mlx_get_data_addr(window.img_ptr, &window.bits_per_pixel, \
+	&window.line_length, &window.endian);
 	cube.count = 0;
+	cube.window = window;
 	draw_map2D(&cube);
 	draw_player(&cube);
-	mlx_put_image_to_window(cube.mlx_ptr, cube.mlx_win, cube.img_ptr, 0, 0);
-	mlx_hook(cube.mlx_win, 2, (1L << 0), press_keys, &cube);
-	mlx_hook(cube.mlx_win, 3, (1L << 1), release_keys, &cube);
-	mlx_loop_hook(cube.mlx_ptr, loop, &cube);
-	mlx_hook(cube.mlx_win, ON_DESTROY, 0, close_window, &cube);
-	mlx_loop(cube.mlx_ptr);
-	mlx_destroy_image(cube.mlx_ptr, cube.img_ptr);
-	mlx_destroy_window(cube.mlx_ptr, cube.mlx_win);
-	free(cube.mlx_ptr);
+	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.img_ptr, 0, 0);
+	mlx_hook(window.mlx_win, 2, (1L << 0), press_keys, &cube);
+	mlx_hook(window.mlx_win, 3, (1L << 1), release_keys, &cube);
+	mlx_loop_hook(window.mlx_ptr, loop, &cube);
+	mlx_hook(window.mlx_win, ON_DESTROY, 0, close_window, &cube);
+	mlx_loop(window.mlx_ptr);
+	mlx_destroy_image(window.mlx_ptr, window.img_ptr);
+	mlx_destroy_window(window.mlx_ptr, window.mlx_win);
+	free(window.mlx_ptr);
 }
 
 t_player	init_player(int index, int jdex, char c)
