@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/20 16:53:12 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:28:24 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	test_angle(t_data *cube, double tmp_angle, double r)
 	double	tmpy;
 	double	posx;
 	double	posy;
-	
+
 	x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
 	y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
 	posx = (cube->j1.posx + x1 + 5) / 10;
@@ -65,11 +65,11 @@ static int	test_angle(t_data *cube, double tmp_angle, double r)
 	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
 	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
 	if ((tmpx >= 0) && (tmpy >= 0) && (cube->map[(int)tmpy][(int)tmpx] == '1'))
-		return (1);
+		return (wich_wall(cube, tmpx, tmpy, posx, posy), 1);
 	else
 	{
 		if ((cube->map[(int)tmpy][(int)posx] == '1') && (cube->map[(int)posy][(int)tmpx] == '1'))
-			return (1);
+			return (wich_wall(cube, tmpx, tmpy, posx, posy), 1);
 		return (0);
 	}
 }
@@ -120,7 +120,7 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle, double 
 	while (jdex < WINHEIGHT)
 	{
 		if ((jdex >= (WINHEIGHT / 2) - limit) && (jdex <= (WINHEIGHT / 2) + limit))
-			my_mlx_pixel_put(cube, index, jdex, 0xFFFFFF);
+			draw_textures(cube, index, jdex);
 		else if ((jdex < (WINHEIGHT / 2) - limit))
 			my_mlx_pixel_put(cube, index, jdex, 0x3A86FF);
 		else if ((jdex > (WINHEIGHT / 2) + limit))
