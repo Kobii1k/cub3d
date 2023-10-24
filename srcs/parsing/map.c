@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/17 18:50:39 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/19 07:43:39 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ t_data	*init_cube(char *str)
 	if (!cube)
 		return (close(fd), NULL);
 	cube->map = create_map(fd, cube);
+	fd = open(str, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("map error : no access to file\n"), NULL);
+	cube->p = parse_map(fd, cube->map, cube->height);
+	if (!cube->p)
+		return (NULL);
 	cube->keys = malloc(sizeof(int) * 6);
 	if (!cube->keys)
 		return (close(fd), free(cube), NULL);
@@ -71,7 +77,6 @@ t_data	*init_cube(char *str)
 
 int		check_map(char *str)
 {
-	t_parse	*parse;
 	int		fd;
 
 	if (verif_map_name(str) == -1)
@@ -85,9 +90,6 @@ int		check_map(char *str)
 		ft_printf("map error : no access to file\n");
 		return (-1);
 	}
-	parse = parse_map(fd);
-	if (!parse)
-		return (-1);
 	return (fd);
 }
 

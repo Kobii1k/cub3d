@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/18 13:49:13 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/24 14:47:26 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,89 @@ int	get_params(char *str, t_parse *p, int complete[6])
 			return (rgb_to_hex(p, str, i, n));
 	}
 }
-
-t_parse	*parse_map(int fd)
+int	input_values(t_parse *p, int fd, int complete[6])
 {
-	t_parse	*p;
-	char	*str;
-	int		complete[6];
 	int		n;
+	char	*str;
 
-	p = malloc(sizeof(t_parse));
-	if (!p)
-		return (NULL);
-	ft_memset(complete, 0, 6);
-	str = get_next_line(fd);
 	n = 0;
+	str = get_next_line(fd);
+	ft_memset(complete, 0, 6);
 	while (str)
 	{
 		if (str[0])
 		{
 			if (get_params(str, p, complete))
-				return (free(str), free_parse(p), NULL);
+				return (free(str), free_parse(p), 1);
 			n++;
 			if (n == 6)
 				break ;
 		}
 		str = get_next_line(fd);
 	}
-	return (free(str), p);
+	return (free(str), 0);
+}
+
+int	verified_value(char c, int border, int *player)
+{
+	if (border == 1 && c == '1')
+		return (1);
+	if (border == 1 && c == '0')
+		return (0);
+	if (c == '0' || c == '1')
+		return (1);
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		if (*player == 0)
+		{
+			*player = 1;
+			return (1);
+		}
+		else
+			return (ft_printf("map error : multiple player position value\n"), 0);
+	}
+	return (ft_printf("map error : unknown value detected\n"), 0);
+}
+
+int	map_check(char **map, int size)
+{
+	int		i;
+	int		j;
+	int		border;
+	int		player;
+
+	j = 0;
+	player = 0;
+	while (j < size)
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (i == 0 || j == 0 || j == size - 1 || map[j][i+1] == '\0')
+				border = 1;
+			if (verified_value(map[j][i], border, &player) == 0)
+				return (1);
+			border = 0;
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+
+t_parse	*parse_map(int fd, char **map, int size)
+{
+	t_parse	*p;
+	int		complete[6];
+
+	p = malloc(sizeof(t_parse));
+	if (!p)
+		return (NULL);
+	if (input_values(p, fd, complete))
+		return (NULL);
+	if (map_check(map, size))
+		return (NULL);
+	return (p);
 }
 // printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\nC : %x\nF : %x\n", p->north, p->south, p->east, p->west, p->ceiling, p->floor);
 
@@ -92,7 +148,7 @@ int	which_param(char *str)
 
 int	createRGB(int r, int g, int b)
 {
-    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+    return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
 int	translate_rgb(char *str)
