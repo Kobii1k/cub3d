@@ -6,7 +6,7 @@
 #    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/10 15:20:31 by mgagne           ###   ########.fr        #
+#    Updated: 2023/10/11 16:37:17 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)drawing.c		\
 		$(DIR_GAME)loop.c		\
 		$(DIR_PARS)map.c		\
+		$(DIR_PARS)parsing.c		\
+		$(DIR_PARS)parsing_utils.c		\
 
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
 
@@ -68,7 +70,7 @@ $(DIR_OBJ)%.o: %.c $(HEADERS)
 
 $(NAME): $(LIB) $(MLXLIB) $(OBJS)
 	make -C $(MLXDIR)
-	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME) -fsanitize=address
+	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME) 
 
 makelib:
 			$(MAKE) -C libft

@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 15:20:21 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/19 07:44:02 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,16 @@ enum {
 	ESCk = 7
 };
 
+typedef struct s_parse
+{
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	int		ceiling;
+	int		floor;
+}			t_parse;
+
 typedef struct s_player
 {
 	int		posx;
@@ -86,6 +96,7 @@ typedef struct s_data
 	int			line_length;
 	int			endian;
 	t_player	j1;
+	t_parse		*p;
 }			t_data;
 
 //display.c
@@ -112,8 +123,14 @@ void		draw_lines(t_data *cube);
 //map.c
 char		**create_map(int fd, t_data *cube);
 int			check_map(char *str);
-t_data		*parse_map(char *str);
+t_data		*init_cube(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
+
+//parsing.c
+t_parse		*parse_map(int fd, char **map, int size);
+
+void		free_s(char **split);
+void		free_parse(t_parse *p);
 
 #endif

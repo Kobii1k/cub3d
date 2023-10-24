@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/10 11:19:16 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:23:32 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-t_player	axis_converter(t_data cube, int x, int y);
 
 void	draw_player(t_data *cube)
 {
