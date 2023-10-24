@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/21 15:57:48 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:26:06 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static int	test_angle(t_data *cube, double tmp_angle, double r)
 	y1 = r * sinf(tmp_angle * M_PI / 180);
 	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
 	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
-	raypos[0] = tmpx;
-	raypos[1] = tmpy;
+	raypos[0] = (cube->j1.posx + x1 + 5) / 10;
+	raypos[1] = (cube->j1.posy + y1 + 5) / 10;
 	cube->raypos[0] = raypos[0];
 	cube->raypos[1] = raypos[1];
 	if ((tmpx >= 0) && (tmpy >= 0) && (cube->map[(int)tmpy][(int)tmpx] == '1'))
@@ -91,10 +91,9 @@ static double	hyp_size(t_data *cube, double tmp_angle, double r)
 	y1 = r * sinf(tmp_angle * M_PI / 180);
 	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
 	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
-	// printf("x pers %f, x coli %f\n", (cube->j1.posx + 5) / 10, tmpx); 
 	hyp = sqrtl(powl(((cube->j1.posx + 5) / 10) - tmpx, 2) + powl(((cube->j1.posy + 5) / 10) - tmpy, 2));
-	if (tmp_angle == cube->j1.player_angle)
-		printf("hyp %f\n", hyp);
+	// if (tmp_angle == cube->j1.player_angle)
+	// 	printf("hyp %f\n", hyp);
 	return (hyp);
 }
 

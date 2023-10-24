@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/21 16:35:20 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:28:54 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		my_mlx_pixel_get(t_frame *image, int x, int y)
 {
 	char	*dst;
 
-	// if (x < 0 || y < 0 || x > WINWIDTH || y > WINHEIGHT)
-	// 	return (-1);
+	if (x < 0 || y < 0 || x > WINWIDTH || y > WINHEIGHT)
+		return (-1);
 	dst = image->img_addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
 	return (*(unsigned int *) dst);
 }

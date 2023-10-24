@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/21 16:02:32 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:46:02 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	do_cube(t_data cube)
 	&window.line_length, &window.endian);
 	cube.count = 0;
 	cube.window = window;
+	open_textures(&cube);
 	draw_map2D(&cube);
 	draw_player(&cube);
 	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.img_ptr, 0, 0);

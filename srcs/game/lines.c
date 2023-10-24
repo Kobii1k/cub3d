@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@42lyon.fr>              +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 19:08:28 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:15:35 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,16 @@ void do_line(t_data *cube, double tmp_angle, int r)
     int y1;
     int posx;
     int posy;
-    
+    double  tmpx;
+    double  tmpy;
+
     r = 0;
     while (r < 300)
     {
+        tmpx = (r - 1) * cos(tmp_angle * M_PI / 180);
+        tmpx = floor(tmpx) / 10;
+        tmpy = (r - 1) * sin(tmp_angle * M_PI / 180);
+        tmpy = floor(tmpy) / 10;
         x1 = r * cos(tmp_angle * M_PI / 180);
         y1 = r * sin(tmp_angle * M_PI / 180);
         posx = floor((cube->j1.posx + x1) / 10);
@@ -53,6 +59,14 @@ void do_line(t_data *cube, double tmp_angle, int r)
             // raycast(data, r);
             break ;
         }
+        // else
+        // {
+        //     if ((cube->map[(int)tmpy][(int)posx] == '1') || (cube->map[(int)posy][(int)tmpx] == '1'))
+        //     {
+        //         my_mlx_pixel_put(cube, cube->j1.posx + x1, cube->j1.posy + y1, 0xFE0000);
+        //         break ;
+        //     }
+        // }
         r++;
     }
 }
