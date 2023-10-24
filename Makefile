@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/11 16:37:17 by mgagne           ###   ########.fr        #
+#    Updated: 2023/10/24 15:44:58 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,12 +54,16 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)display.c	\
 		$(DIR_GAME)hooks.c		\
 		$(DIR_GAME)game.c		\
-		$(DIR_GAME)drawing.c		\
+		$(DIR_GAME)drawing.c	\
 		$(DIR_GAME)loop.c		\
 		$(DIR_PARS)map.c		\
 		$(DIR_PARS)parsing.c		\
-		$(DIR_PARS)parsing_utils.c		\
-
+		$(DIR_PARS)parsing_utils.c	\
+		$(DIR_GAME)lines.c		\
+		$(DIR_GAME)raycast.c	\
+		$(DIR_GAME)move.c		\
+		$(DIR_GAME)texture.c	\
+		
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
 
 all	:		makelib $(NAME)

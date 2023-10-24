@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/24 14:47:26 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:56:08 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	verified_value(char c, int border, int *player)
 	if (border == 1 && c == '1')
 		return (1);
 	if (border == 1 && c == '0')
-		return (0);
+		return (ft_printf("map error : not closed !\n"), 0);
 	if (c == '0' || c == '1')
 		return (1);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
@@ -172,7 +172,7 @@ int	translate_rgb(char *str)
 					printf("error : RGB value not digit\n"), -1);
 		}
 		nb[i] = ft_atoi(values[i]);
-		if (nb[i] > 255 && nb[i] < 0)
+		if (nb[i] > 255 || nb[i] < 0)
 			return (free_s(values), printf("error : 0<RGB_value<255\n"), -1);
 	}
 	if (i == 3)
