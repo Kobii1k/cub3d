@@ -6,7 +6,7 @@
 #    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/28 05:37:06 by mgagne           ###   ########.fr        #
+#    Updated: 2023/10/28 12:13:49 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)display.c	\
 		$(DIR_GAME)hooks.c		\
 		$(DIR_GAME)game.c		\
-		$(DIR_GAME)drawing.c	\
+		$(DIR_GAME)minimap.c	\
 		$(DIR_GAME)loop.c		\
 		$(DIR_PARS)map.c		\
 		$(DIR_PARS)parsing.c		\
