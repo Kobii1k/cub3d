@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/24 16:02:36 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:32:42 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle, double 
 {
 	double	limit;
 	int		jdex;
-	// double	dist;
+
 	(void) hyp;
-	(void) r;
 	jdex = 0;
 	// dist = (double) hyp * cosf(tmp_angle * M_PI / 180);
 	// printf("angle : %f\n", tmp_angle);
@@ -120,8 +119,9 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle, double 
 	// limit = (double)((1 / dist) * 100 * 2);
 	// printf("size hypothenuse %f, other : %f\n", limit, floor((1 / r) * 1000));
 	// limit = floor((1 / r) * 1000);
-	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 1000);
-	while (jdex < WINHEIGHT)
+	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 4000);
+	cube->limit = limit;
+	while (jdex <= WINHEIGHT)
 	{
 		if ((jdex >= (WINHEIGHT / 2) - limit) && (jdex <= (WINHEIGHT / 2) + limit))
 			draw_textures(cube, index, jdex);

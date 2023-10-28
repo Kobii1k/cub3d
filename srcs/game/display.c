@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/23 14:28:54 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:56:30 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	my_mlx_pixel_put(t_data *cube, int x, int y, int color)
 int		my_mlx_pixel_get(t_frame *image, int x, int y)
 {
 	char	*dst;
+
+	// printf("test %d %d\n", x, y);
 
 	if (x < 0 || y < 0 || x > WINWIDTH || y > WINHEIGHT)
 		return (-1);
