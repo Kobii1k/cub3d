@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/24 15:53:03 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/28 05:37:32 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,14 +143,14 @@ void		move_left(t_data *cube);
 void		move_right(t_data *cube);
 
 //map.c
-char		**create_map(int fd, t_data *cube);
+int			create_map(int fd, t_data *cube);
 int			check_map(char *str);
 t_data		*init_cube(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 
 //parsing.c
-t_parse		*parse_map(int fd, char **map, int size);
+t_parse		*parse_map(t_data *cube, int fd);
 
 void		free_s(char **split);
 void		free_parse(t_parse *p);
