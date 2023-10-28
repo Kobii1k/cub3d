@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/28 05:32:35 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/28 05:40:24 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,12 +150,12 @@ int	which_param(char *str)
 	return (nb);
 }
 
-int	createRGB(int r, int g, int b)
+long	createRGB(int r, int g, int b)
 {
     return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
-int	translate_rgb(char *str)
+long	translate_rgb(char *str)
 {
 	char	**values;
 	int		i;

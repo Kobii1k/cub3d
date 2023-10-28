@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/23 18:16:13 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/28 05:53:39 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void    open_textures(t_data *cube)
 	size = 100;
     cube->ntexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/north.xpm", &size, &size);
 	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, &cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, &cube->ntexture.endian);
-	
+
     cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/south.xpm", &size, &size);
 	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, &cube->stexture.bits_per_pixel, &cube->stexture.line_length, &cube->stexture.endian);
-	
+
     cube->etexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/east.xpm", &size, &size);
 	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, &cube->etexture.bits_per_pixel, &cube->etexture.line_length, &cube->etexture.endian);
 
@@ -58,7 +58,7 @@ double	ft_modf(double nbr, double div)
 	// mod = nbr - (nbr / div);
 	// return (mod);
 	int	i;
-	
+
 	i = nbr / div;
 	nbr -= div * i;
 	return (nbr);
@@ -70,21 +70,21 @@ void	draw_textures(t_data *cube, double index, double jdex)
 	if (cube->ray == 'S')
 	{
 		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->stexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 0x00FF00);
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, 6888733);
 	}
 	if (cube->ray == 'N')
 	{
 		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->ntexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 0xFF0000);
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, 1709590);
 	}
 	if (cube->ray == 'E')
 	{
-		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->etexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));	
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 0xFFFFFF);
+		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->etexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, 1183503);
 	}
 	if (cube->ray == 'W')
 	{
 		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->wtexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 0x0000FF);
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, 3149069);
 	}
 }
