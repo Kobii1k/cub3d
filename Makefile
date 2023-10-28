@@ -6,7 +6,7 @@
 #    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/11 16:37:17 by mgagne           ###   ########.fr        #
+#    Updated: 2023/10/28 05:37:06 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,15 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_GAME)display.c	\
 		$(DIR_GAME)hooks.c		\
 		$(DIR_GAME)game.c		\
-		$(DIR_GAME)drawing.c		\
+		$(DIR_GAME)drawing.c	\
 		$(DIR_GAME)loop.c		\
 		$(DIR_PARS)map.c		\
 		$(DIR_PARS)parsing.c		\
-		$(DIR_PARS)parsing_utils.c		\
+		$(DIR_PARS)parsing_utils.c	\
+		$(DIR_GAME)lines.c		\
+		$(DIR_GAME)raycast.c	\
+		$(DIR_GAME)move.c		\
+		$(DIR_GAME)texture.c	\
 
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
 
@@ -70,7 +74,7 @@ $(DIR_OBJ)%.o: %.c $(HEADERS)
 
 $(NAME): $(LIB) $(MLXLIB) $(OBJS)
 	make -C $(MLXDIR)
-	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME) 
+	$(CC) $(OBJS) -L$(MLXDIR) -lm $(MLXFLAGS) $(libftFLAGS) -o $(NAME)
 
 makelib:
 			$(MAKE) -C libft

@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/24 14:47:26 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/28 05:40:24 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	verified_value(char c, int border, int *player)
 {
 	if (border == 1 && c == '1')
 		return (1);
-	if (border == 1 && c == '0')
-		return (0);
-	if (c == '0' || c == '1')
+	if (border == 1 && c != '1')
+		return (ft_printf("map error :  map must be closed/surrounded by walls\n"), 0);
+	if (c == '0' || c == '1' || c == ' ')
 		return (1);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
@@ -107,10 +107,12 @@ int	map_check(char **map, int size)
 		}
 		j++;
 	}
+	if (player == 0)
+		return (ft_printf("map error : couldn't find player position\n"), 1);
 	return (0);
 }
 
-t_parse	*parse_map(int fd, char **map, int size)
+t_parse	*parse_map(t_data *cube, int fd)
 {
 	t_parse	*p;
 	int		complete[6];
@@ -120,7 +122,9 @@ t_parse	*parse_map(int fd, char **map, int size)
 		return (NULL);
 	if (input_values(p, fd, complete))
 		return (NULL);
-	if (map_check(map, size))
+	if (create_map(fd, cube))
+		return (NULL);
+	if (map_check(cube->map, cube->height))
 		return (NULL);
 	return (p);
 }
@@ -146,12 +150,12 @@ int	which_param(char *str)
 	return (nb);
 }
 
-int	createRGB(int r, int g, int b)
+long	createRGB(int r, int g, int b)
 {
     return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
-int	translate_rgb(char *str)
+long	translate_rgb(char *str)
 {
 	char	**values;
 	int		i;
@@ -172,7 +176,7 @@ int	translate_rgb(char *str)
 					printf("error : RGB value not digit\n"), -1);
 		}
 		nb[i] = ft_atoi(values[i]);
-		if (nb[i] > 255 && nb[i] < 0)
+		if (nb[i] > 255 || nb[i] < 0)
 			return (free_s(values), printf("error : 0<RGB_value<255\n"), -1);
 	}
 	if (i == 3)
