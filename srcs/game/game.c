@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/24 15:50:27 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/29 13:55:42 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	get_player(t_data *cube)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < cube->height)
+	{
+		x = 0;
+		while (cube->map[y][x])
+		{
+			if (ft_isalpha(cube->map[y][x]) == 1)
+			{
+				cube->j1 = init_player(x, y, cube->map[y][x]);
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+	return ;
+}
 
 int	do_cube(t_data *cube)
 {
@@ -26,6 +50,7 @@ int	do_cube(t_data *cube)
 	&window.line_length, &window.endian);
 	cube->count = 0;
 	cube->window = window;
+	get_player(cube);
 	open_textures(cube);
 	draw_map2D(cube);
 	draw_player(cube);

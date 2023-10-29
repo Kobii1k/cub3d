@@ -6,42 +6,15 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/28 05:30:48 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 13:35:22 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int		check_map(char *str);
-
-int	create_map(int fd, t_data *cube)
-{
-	char	*str;
-	int		index;
-
-	index = 0;
-	str = get_next_line(fd);
-	if (!str)
-		return (1);
-	cube->map = malloc(sizeof(char *) * 60);
-	while (str && str[0] != '1')
-	{
-		if (str[0] && str[0] != ' ' && str[0] != '1')
-			return (ft_printf("map error : unexpected value\n"), 1);
-		free(str);
-		str = get_next_line(fd);
-	}
-	while (str)
-	{
-		cube->map[index] = ft_strdup(str);
-		free(str);
-		str = get_next_line(fd);
-		index++;
-	}
-	ft_printf("%d\n\n", index);
-	cube->height = index;
-	return (0);
-}
+int		map_verif(char *str);
+int		verif_map_name(char *str);
+void	print_map(t_data *cube);
 
 t_data	*init_cube(char *str)
 {
@@ -49,7 +22,7 @@ t_data	*init_cube(char *str)
 	int		fd;
 	int		index;
 
-	fd = check_map(str);
+	fd = map_verif(str);
 	if (fd == -1)
 		return (NULL);
 	cube = malloc(sizeof(t_data));
@@ -72,7 +45,7 @@ t_data	*init_cube(char *str)
 	return (cube);
 }
 
-int		check_map(char *str)
+int	map_verif(char *str)
 {
 	int		fd;
 
@@ -88,20 +61,6 @@ int		check_map(char *str)
 		return (-1);
 	}
 	return (fd);
-}
-
-void	print_map(t_data *cube)
-{
-	int	index;
-
-	if (!cube->map)
-		ft_printf("Error with the map\n");
-	index = 0;
-	while (index < cube->height)
-	{
-		ft_printf("%s\n", cube->map[index]);
-		index++;
-	}
 }
 
 int	verif_map_name(char *str)
@@ -125,5 +84,48 @@ int	verif_map_name(char *str)
 		return (-1);
 	if (str[tmp + 4])
 		return (-1);
+	return (0);
+}
+
+void	print_map(t_data *cube)
+{
+	int	index;
+
+	if (!cube->map)
+		ft_printf("Error with the map\n");
+	index = 0;
+	while (index < cube->height)
+	{
+		ft_printf("%s\n", cube->map[index]);
+		index++;
+	}
+}
+
+int	path_values(t_parse *p, char *str, int i, int n)
+{
+	if (n == 0)
+	{
+		p->north = ft_strdup(&(str[i]));
+		if (!p->north)
+			return (printf("malloc error\n"), 1);
+	}
+	if (n == 1)
+	{
+		p->south = ft_strdup(&(str[i]));
+		if (!p->south)
+			return (printf("malloc error\n"), 1);
+	}
+	if (n == 2)
+	{
+		p->east = ft_strdup(&(str[i]));
+		if (!p->east)
+			return (printf("malloc error\n"), 1);
+	}
+	if (n == 3)
+	{
+		p->west = ft_strdup(&(str[i]));
+		if (!p->west)
+			return (printf("malloc error\n"), 1);
+	}
 	return (0);
 }
