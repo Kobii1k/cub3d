@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 13:27:25 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 15:34:13 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int			loop(t_data *cube);
 
 //drawing.c
 void		draw_player(t_data *cube);
-void		draw_map2D(t_data *cube);
+void		draw_minimap(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
 void		draw_vision(t_data *cube);

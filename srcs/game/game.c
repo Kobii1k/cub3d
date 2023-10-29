@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 13:55:42 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 15:34:16 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	do_cube(t_data *cube)
 	cube->window = window;
 	get_player(cube);
 	open_textures(cube);
-	draw_map2D(cube);
+	draw_minimap(cube);
 	draw_player(cube);
 	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.img_ptr, 0, 0);
 	mlx_hook(window.mlx_win, 2, (1L << 0), press_keys, cube);
