@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:13:41 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/29 13:48:31 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 15:10:00 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ void	draw_map2D(t_data *cube)
 	double	xkeep;
 	double	ykeep;
 
-	x = ((cube->j1.posx + 10) - 100);
-	y = ((cube->j1.posy + 10) - 100);
-	printf("%f -- %f\n", x, y);
+	x = ((cube->j1.posx + 10.0) - 100.0);
+	y = ((cube->j1.posy + 10.0) - 100.0);
 	xkeep = x;
 	ykeep = y;
-	while (y <= (ykeep + 200))
+	while (y <= (ykeep + 200.0))
 	{
 		x = xkeep;
-		while (x <= (xkeep + 200))
+		while (x <= (xkeep + 200.0))
 		{
-			if (x >= 0 && y >= 0 && floor(y/10) < cube->height && cube->map[(int)floor(y/10)][(int)floor(x/10)])
-				put_map2D(cube, (floor(xkeep - x + 200)), (floor(ykeep - y + 200)), cube->map[(int)floor((y/10))][(int)floor((x/10))]);
-			x += 1;
+
+			if (x >= 0.0 && y >= 0.0 && floor(y)/10 < cube->height && cube->map[(int)floor(y/10)][(int)floor(x/10)])
+				put_map2D(cube, (floor(xkeep - x + 200.0)), (floor(ykeep - y + 200.0)), cube->map[(int)floor((y/10))][(int)floor((x/10))]);
+			x += 0.99999;
 		}
-		y += 1;
+		y += 0.99999;
 	}
 	return ;
 }

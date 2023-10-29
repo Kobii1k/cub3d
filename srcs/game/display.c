@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 13:50:50 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 13:55:37 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	display_game(t_data *cube)
 	&cube->window.bits_per_pixel, &cube->window.line_length, &cube->window.endian);
 	draw_raycast(cube);
 	draw_map2D(cube);
-	// draw_player(cube);
-	// draw_vision(cube);
+	draw_player(cube);
 	mlx_put_image_to_window(cube->window.mlx_ptr, cube->window.mlx_win, \
 	cube->window.img_ptr, 0, 0);
 	return (0);
