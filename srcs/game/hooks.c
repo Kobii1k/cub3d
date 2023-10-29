@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/24 15:45:29 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:45:57 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		release_keys(int key, t_data *cube);
-// void	add_vect(t_data *cube);
 
 int	press_keys(int key, t_data *cube)
 {
@@ -81,6 +80,6 @@ int	close_window(t_data *cube)
 	free(cube->map);
 	free(cube->keys);
 	free(cube->window.mlx_ptr);
-	// free(cube);
+	free(cube);
 	exit (0);
 }
