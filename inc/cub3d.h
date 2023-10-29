@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/28 05:40:39 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 13:27:25 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,22 @@ void		move_down(t_data *cube);
 void		move_left(t_data *cube);
 void		move_right(t_data *cube);
 
-//map.c
+//parsing
+t_parse		*parse_map(t_data *cube, int fd);
+int			verified_value(char c, int border, int *player);
+int			which_param(char *str);
+long		create_rgb(int r, int g, int b);
+long		translate_rgb(char *str);
+int			rgb_to_hex(t_parse *p, char *str, int i, int n);
+int			path_values(t_parse *p, char *str, int i, int n);
 int			create_map(int fd, t_data *cube);
 int			check_map(char *str);
 t_data		*init_cube(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 
-//parsing.c
-t_parse		*parse_map(t_data *cube, int fd);
-
-void		free_s(char **split);
+//free
+void		free_split(char **split);
 void		free_parse(t_parse *p);
 
 void    open_textures(t_data *cube);

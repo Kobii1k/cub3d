@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:13:41 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/28 17:40:01 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/29 13:48:31 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	draw_map2D(t_data *cube)
 	double	xkeep;
 	double	ykeep;
 
-	x = ((cube->j1.posx + 5) - 100);
-	y = ((cube->j1.posy + 5) - 100);
+	x = ((cube->j1.posx + 10) - 100);
+	y = ((cube->j1.posy + 10) - 100);
 	printf("%f -- %f\n", x, y);
 	xkeep = x;
 	ykeep = y;
@@ -59,8 +59,8 @@ void	draw_map2D(t_data *cube)
 		x = xkeep;
 		while (x <= (xkeep + 200))
 		{
-			if (x/10 >= 0 && y/10 >= 0 && cube->map[(int)(y/10)][(int)(x/10)] && floor(y/10) < cube->height)
-				put_map2D(cube, (xkeep - x + 200), (ykeep - y + 200), cube->map[(int)(floor(y/10))][(int)(floor(x/10))]);
+			if (x >= 0 && y >= 0 && floor(y/10) < cube->height && cube->map[(int)floor(y/10)][(int)floor(x/10)])
+				put_map2D(cube, (floor(xkeep - x + 200)), (floor(ykeep - y + 200)), cube->map[(int)floor((y/10))][(int)floor((x/10))]);
 			x += 1;
 		}
 		y += 1;
@@ -70,16 +70,12 @@ void	draw_map2D(t_data *cube)
 
 void	put_map2D(t_data *cube, double x, double y, char c)
 {
-	int color;
 	if (c == '1')
-	{
-		color = 0x00FF00;
-		my_mlx_pixel_put(cube, x, y, color);
-
-	}
+		my_mlx_pixel_put(cube, x, y, 0x005500);
 	else if (c == '0')
-	{
-		color = 0xF0F0F0;
-		my_mlx_pixel_put(cube, x, y, color);
-	}
+		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
+	else if (ft_isalpha(c))
+		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
+	else if (c == ' ')
+		my_mlx_pixel_put(cube, x, y, 0x000000);
 }
