@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/30 09:36:28 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:47:37 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,29 @@ void	draw_raycast(t_data *cube)
 
 static int	test_angle(t_data *cube, double tmp_angle, double r)
 {
+	double	x1;
+	double	y1;
 	double	tmp[2];
-	double	posx;
-	double	posy;
+	double	pos[2];
 
-	cube->x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
-	cube->y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
-	posx = (cube->j1.posx + cube->x1 + 5) / 10;
-	posy = (cube->j1.posy + cube->y1 + 5) / 10;
-	cube->x1 = r * cosf(tmp_angle * M_PI / 180);
-	cube->y1 = r * sinf(tmp_angle * M_PI / 180);
-	tmp[0] = floor((cube->j1.posx + cube->x1 + 5) / 10);
-	tmp[1] = floor((cube->j1.posy + cube->y1 + 5) / 10);
-	cube->raypos[0] = (cube->j1.posx + cube->x1 + 5) / 10;
-	cube->raypos[1] = (cube->j1.posy + cube->y1 + 5) / 10;
+	x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
+	y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
+	pos[0] = (cube->j1.posx + x1 + 5) / 10;
+	pos[1] = (cube->j1.posy + y1 + 5) / 10;
+	x1 = r * cosf(tmp_angle * M_PI / 180);
+	y1 = r * sinf(tmp_angle * M_PI / 180);
+	tmp[0] = floor((cube->j1.posx + x1 + 5) / 10);
+	tmp[1] = floor((cube->j1.posy + y1 + 5) / 10);
+	cube->raypos[0] = (cube->j1.posx + x1 + 5) / 10;
+	cube->raypos[1] = (cube->j1.posy + y1 + 5) / 10;
 	if ((tmp[0] >= 0) && (tmp[1] >= 0) && \
-	(cube->map[(int)tmp[1]][(int)tmp[0]] == '1'))
-		return (wich_wall(cube, tmp, posx, posy), 1);
-	else
-	{
-		if ((cube->map[(int)tmp[1]][(int)posx] == '1') || \
-		(cube->map[(int)posy][(int)tmp[0]] == '1') || \
 		(cube->map[(int)tmp[1]][(int)tmp[0]] == '1'))
-			return (wich_wall(cube, tmp, posx, posy), 1);
-		return (0);
-	}
+		return (wich_wall(cube, tmp, pos[0], pos[1]), 1);
+	if ((cube->map[(int)tmp[1]][(int)pos[0]] == '1') || \
+		(cube->map[(int)pos[1]][(int)tmp[0]] == '1') || \
+		(cube->map[(int)tmp[1]][(int)tmp[0]] == '1'))
+		return (wich_wall(cube, tmp, pos[0], pos[1]), 1);
+	return (0);
 }
 
 static	double	find_angle(t_data *cube, double tmp_angle)
@@ -90,7 +88,7 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle)
 	while (jdex <= WINHEIGHT)
 	{
 		if ((jdex > (WINHEIGHT / 2) - limit) && \
-		(jdex < (WINHEIGHT / 2) + limit))
+			(jdex < (WINHEIGHT / 2) + limit))
 			draw_textures(cube, index, jdex);
 		else if ((jdex <= (WINHEIGHT / 2) - limit))
 			my_mlx_pixel_put(cube, index, jdex, cube->p->ceiling);

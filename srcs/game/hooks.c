@@ -6,14 +6,13 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 16:44:26 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:32:47 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		release_keys(int key, t_data *cube);
-// void	add_vect(t_data *cube);
 
 int	press_keys(int key, t_data *cube)
 {

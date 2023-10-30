@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/30 09:31:42 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:19:41 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	next_open_textures(t_data *cube);
 static void	put_texture(t_data *cube, double index, \
 			double jdex, int pos_pix[2]);
+static int	next_open_textures(t_data *cube);
 
 int	open_textures(t_data *cube)
 {
@@ -32,7 +33,7 @@ int	open_textures(t_data *cube)
 	&cube->stexture.endian);
 	if (cube->stexture.sizex != 200 || cube->stexture.sizey != 200)
 		return (-1);
-	return (next_open_texture(cube));
+	return (next_open_textures(cube));
 }
 
 static int	next_open_textures(t_data *cube)
@@ -82,17 +83,17 @@ void	draw_textures(t_data *cube, double index, double jdex)
 	{
 		pos_pix[0] = (cube->raypos[0] - floor(cube->raypos[0])) * 200;
 	}
-	if (cube->ray == 'N')
+	else if (cube->ray == 'N')
 	{
 		pos_pix[0] = (cube->raypos[0] - floor(cube->raypos[0])) * 200;
 		pos_pix[0] = cube->ntexture.sizex - 1 - pos_pix[0];
 	}
-	if (cube->ray == 'E')
+	else if (cube->ray == 'E')
 	{
 		pos_pix[0] = (cube->raypos[1] - floor(cube->raypos[1])) * 200;
 		pos_pix[0] = cube->etexture.sizex - 1 - pos_pix[0];
 	}
-	if (cube->ray == 'W')
+	else if (cube->ray == 'W')
 	{
 		pos_pix[0] = (cube->raypos[1] - floor(cube->raypos[1])) * 200;
 	}

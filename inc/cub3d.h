@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/30 09:42:13 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:20:58 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void		free_parse(t_parse *p);
 
 int			open_textures(t_data *cube);
 void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
+// void	wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy);
 void		draw_textures(t_data *cube, double index, double jdex);
 
 #endif

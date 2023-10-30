@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/30 09:41:42 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:55:53 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	draw_player(t_data *cube)
 		}
 		angle++;
 	}
-	// draw_lines(cube);
 }
 
 void	draw_map2d(t_data *cube)
