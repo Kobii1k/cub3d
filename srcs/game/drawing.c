@@ -6,14 +6,14 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:07:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/28 12:53:51 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:41:42 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 t_player	axis_converter(t_data cube, int x, int y);
-void		put_map2D(t_data *cube, int index, int jdex, int color);
+void		put_map2d(t_data *cube, int index, int jdex, int color);
 void		raycast(t_data *cube, double r, int index);
 int			test_angle(t_data *cube, double tmp_angle, double r);
 
@@ -34,7 +34,8 @@ void	draw_player(t_data *cube)
 			x1 = r * cos(angle * M_PI / 180);
 			y1 = r * sin(angle * M_PI / 180);
 			angle += 0.1;
-			my_mlx_pixel_put(cube, floor(cube->j1.posx + x1 + 5), floor(cube->j1.posy + y1 + 5), 0xFF0000);
+			my_mlx_pixel_put(cube, floor(cube->j1.posx + x1 + 5), \
+			floor(cube->j1.posy + y1 + 5), 0xFF0000);
 			r--;
 		}
 		angle++;
@@ -42,7 +43,7 @@ void	draw_player(t_data *cube)
 	// draw_lines(cube);
 }
 
-void	draw_map2D(t_data *cube)
+void	draw_map2d(t_data *cube)
 {
 	int	index;
 	int	jdex;
@@ -56,14 +57,14 @@ void	draw_map2D(t_data *cube)
 		jdex = 0;
 		while (cube->map[index][jdex])
 		{
-			put_map2D(cube, index, jdex, color);
+			put_map2d(cube, index, jdex, color);
 			jdex++;
 		}
 		index++;
 	}
 }
 
-void	put_map2D(t_data *cube, int index, int jdex, int color)
+void	put_map2d(t_data *cube, int index, int jdex, int color)
 {
 	if (cube->map[index][jdex] == '1')
 	{

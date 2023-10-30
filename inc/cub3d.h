@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/28 12:14:35 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:42:13 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_frame
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			sizex;
+	int			sizey;
 }				t_frame;
 
 typedef struct s_data
@@ -101,6 +103,8 @@ typedef struct s_data
 	int			count;
 	int			height;
 	int			width;
+	int			x1;
+	int			y1;
 	char		ray;
 	double		raypos[2];
 	double		limit;
@@ -131,7 +135,7 @@ int			loop(t_data *cube);
 
 //drawing.c
 void		draw_player(t_data *cube);
-void		draw_map2D(t_data *cube);
+void		draw_map2d(t_data *cube);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
 void		draw_vision(t_data *cube);
@@ -156,8 +160,8 @@ t_parse		*parse_map(t_data *cube, int fd);
 void		free_s(char **split);
 void		free_parse(t_parse *p);
 
-void    open_textures(t_data *cube);
-void	wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy);
-void	draw_textures(t_data *cube, double index, double jdex);
+int			open_textures(t_data *cube);
+void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
+void		draw_textures(t_data *cube, double index, double jdex);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:23:38 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/17 14:53:01 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:26:57 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ int	loop(t_data *cube)
 		move_right(cube);
 	if (cube->keys[LEFT_ARRk] == 1)
 	{
-		cube->j1.player_angle -= 1.5;
+		cube->j1.player_angle -= 3;
 		if (cube->j1.player_angle < 0)
 			cube->j1.player_angle += 360;
 	}
 	if (cube->keys[RIGHT_ARRk] == 1)
 	{
-		cube->j1.player_angle += 1.5;
+		cube->j1.player_angle += 3;
 		if (cube->j1.player_angle > 360)
 			cube->j1.player_angle -= 360;
 	}
-	// printf("%f, %f\n", cube->j1.cam_dx, cube->j1.cam_dy);
 	display_game(cube);
 	return (0);
 }

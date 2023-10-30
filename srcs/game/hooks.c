@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/24 15:45:29 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:44:26 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ int	is_wall(t_data *cube, double posx, double posy)
 	posx = floor(posx + 5) / 10;
 	posy = floor(posy + 5) / 10;
 	if (cube->map[(int)posy][(int)posx] == '1')
+		return (1);
+	if (cube->map[(int)(posy + 0.1)][(int)(posx + 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy - 0.1)][(int)(posx - 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy + 0.1)][(int)(posx - 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy - 0.1)][(int)(posx + 0.1)] == '1')
 		return (1);
 	return (0);
 }

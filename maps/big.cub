@@ -1,7 +1,7 @@
-NO img/north_txtr.xpm
-SO img/south_txtr.xpm
-WE img/west_txtr.xpm
-EA img/east_txtr.xpm
+NO img/testtexture.xpm
+SO img/testtexture.xpm
+WE img/testtexture.xpm
+EA img/testtexture.xpm
 
 C 50,0,0
 F 90,90,90

@@ -6,17 +6,15 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/28 17:32:42 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:36:28 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-// static void	raycast(t_data *cube, double r, int index, double tmp_angle);
 static	double	find_angle(t_data *cube, double tmp_angle);
-static void	raycast(t_data *cube, double r, int index, double tmp_angle, double hyp);
-static double	hyp_size(t_data *cube, double tmp_angle, double r);
-static int	test_angle(t_data *cube, double tmp_angle, double r);
+static void		raycast(t_data *cube, double r, int index, double tmp_angle);
+static int		test_angle(t_data *cube, double tmp_angle, double r);
 
 void	draw_raycast(t_data *cube)
 {
@@ -34,7 +32,7 @@ void	draw_raycast(t_data *cube)
 		{
 			if (test_angle(cube, tmp_angle, r) == 1)
 			{
-				raycast(cube, r, index, find_angle(cube, tmp_angle), hyp_size(cube, tmp_angle, r));
+				raycast(cube, r, index, find_angle(cube, tmp_angle));
 				break ;
 			}
 			if (test_angle(cube, tmp_angle, r + 1) == 1)
@@ -43,58 +41,37 @@ void	draw_raycast(t_data *cube)
 				r += 1;
 		}
 		index++;
-		tmp_angle += (double)cube->j1.fov/WINWIDTH;
+		tmp_angle += (double)cube->j1.fov / WINWIDTH;
 	}
 }
 
 static int	test_angle(t_data *cube, double tmp_angle, double r)
 {
-	double	x1;
-	double	y1;
-	double	tmpx;
-	double	tmpy;
+	double	tmp[2];
 	double	posx;
 	double	posy;
-	double	raypos[2];
 
-	x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
-	y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
-	posx = (cube->j1.posx + x1 + 5) / 10;
-	posy = (cube->j1.posy + y1 + 5) / 10;
-	x1 = r * cosf(tmp_angle * M_PI / 180);
-	y1 = r * sinf(tmp_angle * M_PI / 180);
-	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
-	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
-	raypos[0] = (cube->j1.posx + x1 + 5) / 10;
-	raypos[1] = (cube->j1.posy + y1 + 5) / 10;
-	cube->raypos[0] = raypos[0];
-	cube->raypos[1] = raypos[1];
-	if ((tmpx >= 0) && (tmpy >= 0) && (cube->map[(int)tmpy][(int)tmpx] == '1'))
-		return (wich_wall(cube, tmpx, tmpy, posx, posy), 1);
+	cube->x1 = (r - 1) * cosf(tmp_angle * M_PI / 180);
+	cube->y1 = (r - 1) * sinf(tmp_angle * M_PI / 180);
+	posx = (cube->j1.posx + cube->x1 + 5) / 10;
+	posy = (cube->j1.posy + cube->y1 + 5) / 10;
+	cube->x1 = r * cosf(tmp_angle * M_PI / 180);
+	cube->y1 = r * sinf(tmp_angle * M_PI / 180);
+	tmp[0] = floor((cube->j1.posx + cube->x1 + 5) / 10);
+	tmp[1] = floor((cube->j1.posy + cube->y1 + 5) / 10);
+	cube->raypos[0] = (cube->j1.posx + cube->x1 + 5) / 10;
+	cube->raypos[1] = (cube->j1.posy + cube->y1 + 5) / 10;
+	if ((tmp[0] >= 0) && (tmp[1] >= 0) && \
+	(cube->map[(int)tmp[1]][(int)tmp[0]] == '1'))
+		return (wich_wall(cube, tmp, posx, posy), 1);
 	else
 	{
-		if ((cube->map[(int)tmpy][(int)posx] == '1') && (cube->map[(int)posy][(int)tmpx] == '1'))
-			return (wich_wall(cube, tmpx, tmpy, posx, posy), 1);
+		if ((cube->map[(int)tmp[1]][(int)posx] == '1') || \
+		(cube->map[(int)posy][(int)tmp[0]] == '1') || \
+		(cube->map[(int)tmp[1]][(int)tmp[0]] == '1'))
+			return (wich_wall(cube, tmp, posx, posy), 1);
 		return (0);
 	}
-}
-
-static double	hyp_size(t_data *cube, double tmp_angle, double r)
-{
-	double	hyp;
-	double	x1;
-	double	y1;
-	double	tmpx;
-	double	tmpy;
-
-	x1 = r * cosf(tmp_angle * M_PI / 180);
-	y1 = r * sinf(tmp_angle * M_PI / 180);
-	tmpx = floor((cube->j1.posx + x1 + 5) / 10);
-	tmpy = floor((cube->j1.posy + y1 + 5) / 10);
-	hyp = sqrtl(powl(((cube->j1.posx + 5) / 10) - tmpx, 2) + powl(((cube->j1.posy + 5) / 10) - tmpy, 2));
-	// if (tmp_angle == cube->j1.player_angle)
-	// 	printf("hyp %f\n", hyp);
-	return (hyp);
 }
 
 static	double	find_angle(t_data *cube, double tmp_angle)
@@ -102,32 +79,22 @@ static	double	find_angle(t_data *cube, double tmp_angle)
 	return (fabs(tmp_angle - cube->j1.player_angle));
 }
 
-static void	raycast(t_data *cube, double r, int index, double tmp_angle, double hyp)
+static void	raycast(t_data *cube, double r, int index, double tmp_angle)
 {
 	double	limit;
 	int		jdex;
 
-	(void) hyp;
 	jdex = 0;
-	// dist = (double) hyp * cosf(tmp_angle * M_PI / 180);
-	// printf("angle : %f\n", tmp_angle);
-	// printf("player angle : %f\n", cube->j1.player_angle);
-	// printf("hyp : %f opp : %f r : %f\n", hyp, hyp * sinf(tmp_angle * M_PI / 180), r);
-	// printf("limit : %f\n", limit);
-	// limit = (1 / dist) * 500;
-	// printf("limit : %f\n", limit);
-	// limit = (double)((1 / dist) * 100 * 2);
-	// printf("size hypothenuse %f, other : %f\n", limit, floor((1 / r) * 1000));
-	// limit = floor((1 / r) * 1000);
 	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 4000);
 	cube->limit = limit;
 	while (jdex <= WINHEIGHT)
 	{
-		if ((jdex >= (WINHEIGHT / 2) - limit) && (jdex <= (WINHEIGHT / 2) + limit))
+		if ((jdex > (WINHEIGHT / 2) - limit) && \
+		(jdex < (WINHEIGHT / 2) + limit))
 			draw_textures(cube, index, jdex);
-		else if ((jdex < (WINHEIGHT / 2) - limit))
+		else if ((jdex <= (WINHEIGHT / 2) - limit))
 			my_mlx_pixel_put(cube, index, jdex, cube->p->ceiling);
-		else if ((jdex > (WINHEIGHT / 2) + limit))
+		else if ((jdex >= (WINHEIGHT / 2) + limit))
 			my_mlx_pixel_put(cube, index, jdex, cube->p->floor);
 		jdex++;
 	}

@@ -1,10 +1,10 @@
-NO img/north2.xpm
+NO img/bedrock.xpm
 
-SO img/south2.xpm
+SO img/bedrock.xpm
 
-WE img/west2.xpm
+WE img/meeseeks.xpm
 
-EA img/east2.xpm
+EA img/bullet.xpm
 
 F 200,204,100
 C 200,200,0
