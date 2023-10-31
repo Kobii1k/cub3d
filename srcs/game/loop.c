@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:23:38 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 13:54:13 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 09:37:27 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	loop(t_data *cube)
 		if (cube->j1.player_angle > 360)
 			cube->j1.player_angle -= 360;
 	}
-	// printf("%f, %f\n", cube->j1.cam_dx, cube->j1.cam_dy);
 	display_game(cube);
 	return (0);
 }

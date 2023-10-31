@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 15:51:00 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 09:56:13 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	draw_vision(t_data *cube)
 
 void	do_line(t_data *cube, double tmp_angle, int r)
 {
-	int		x1;
-	int		y1;
-	int		posx;
-	int		posy;
+	int	x1;
+	int	y1;
+	int	posx;
+	int	posy;
 
 	r = 0;
 	while (r < 300)
@@ -47,10 +47,10 @@ void	do_line(t_data *cube, double tmp_angle, int r)
 		y1 = r * sin(tmp_angle * M_PI / 180);
 		posx = floor((cube->j1.posx + x1) / 10);
 		posy = floor((cube->j1.posy + y1) / 10);
-		if (((posx >= 0) && (posy >= 0)) && cube->map[posy][posx] == '1')
+		if (((posx >= 0) && (posy >= 0)) && ((cube->map[posy][posx] == '1')))
 		{
-			my_mlx_pixel_put(cube, cube->j1.posx + x1, cube->j1.posy + y1,
-				0xFE0000);
+			my_mlx_pixel_put(cube, cube->j1.posx + x1, \
+			cube->j1.posy + y1, 0xFE0000);
 			break ;
 		}
 		r++;
