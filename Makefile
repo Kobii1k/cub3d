@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/10/31 09:31:45 by cprojean         ###   ########.fr        #
+#    Updated: 2023/10/31 16:35:03 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ SRCS =	$(DIR_SRCS)main.c		\
 		$(DIR_PARS)parsing.c		\
 		$(DIR_PARS)parsing_utils.c	\
 		$(DIR_PARS)free.c		\
+		$(DIR_PARS)rgb_path.c		\
+		$(DIR_PARS)init.c		\
 		$(DIR_GAME)lines.c		\
 		$(DIR_GAME)raycast.c	\
 		$(DIR_GAME)move.c		\
