@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 15:45:57 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 09:54:48 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ int	is_wall(t_data *cube, double posx, double posy)
 	posy = floor(posy + 5) / 10;
 	if (cube->map[(int)posy][(int)posx] == '1')
 		return (1);
+	if (cube->map[(int)(posy + 0.1)][(int)(posx + 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy - 0.1)][(int)(posx - 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy + 0.1)][(int)(posx - 0.1)] == '1')
+		return (1);
+	if (cube->map[(int)(posy - 0.1)][(int)(posx + 0.1)] == '1')
+		return (1);
 	return (0);
 }
 
@@ -71,7 +79,7 @@ int	close_window(t_data *cube)
 	index = 0;
 	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
 	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
-	// mlx_destroy_display(cube->window.mlx_ptr);
+	mlx_destroy_display(cube->window.mlx_ptr);
 	while (index < cube->height)
 	{
 		free(cube->map[index]);

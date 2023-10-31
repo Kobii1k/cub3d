@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/29 13:35:22 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 09:58:42 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_data	*init_cube(char *str)
 	}
 	print_map(cube);
 	close(fd);
-	return (cube);
+	return (cube->count = 0, cube);
 }
 
 int	map_verif(char *str)

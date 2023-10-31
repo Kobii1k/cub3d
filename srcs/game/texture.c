@@ -3,88 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/28 05:53:39 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 12:55:45 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-double	ft_modf(double nbr, double div);
+static int	next_open_textures(t_data *cube);
+static void	put_texture(t_data *cube, double index, \
+			double jdex, int pos_pix[2]);
+static int	next_open_textures(t_data *cube);
 
-void    open_textures(t_data *cube)
+int	open_textures(t_data *cube)
 {
-	int	size;
-
-	size = 100;
-    cube->ntexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/north.xpm", &size, &size);
-	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, &cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, &cube->ntexture.endian);
-
-    cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/south.xpm", &size, &size);
-	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, &cube->stexture.bits_per_pixel, &cube->stexture.line_length, &cube->stexture.endian);
-
-    cube->etexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/east.xpm", &size, &size);
-	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, &cube->etexture.bits_per_pixel, &cube->etexture.line_length, &cube->etexture.endian);
-
-    cube->wtexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, "img/west.xpm", &size, &size);
-	cube->wtexture.img_addr = mlx_get_data_addr(cube->wtexture.img_ptr, &cube->wtexture.bits_per_pixel, &cube->wtexture.line_length, &cube->wtexture.endian);
+	cube->ntexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
+		cube->p->north, &cube->ntexture.sizex, &cube->ntexture.sizey);
+	// if (!cube->ntexture.img_ptr)
+	// 	return (-1);
+	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, \
+		&cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, \
+		&cube->ntexture.endian);
+	if (cube->ntexture.sizex != 200 || cube->ntexture.sizey != 200)
+		return (-1);
+	cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
+		cube->p->south, &cube->stexture.sizex, &cube->stexture.sizey);
+	// if (!cube->stexture.img_ptr)
+	// 	return (-1);
+	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, \
+	&cube->stexture.bits_per_pixel, &cube->stexture.line_length, \
+	&cube->stexture.endian);
+	if (cube->stexture.sizex != 200 || cube->stexture.sizey != 200)
+		return (-1);
+	return (next_open_textures(cube));
 }
 
-void	wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy)
+static int	next_open_textures(t_data *cube)
 {
-	if (cube->map[(int)tmpy][(int)posx] == '1')
+	cube->etexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
+		cube->p->east, &cube->etexture.sizex, &cube->etexture.sizex);
+	// if (!cube->etexture.img_ptr)
+	// 	return (-1);
+	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, \
+		&cube->etexture.bits_per_pixel, &cube->etexture.line_length, \
+		&cube->etexture.endian);
+	if (cube->etexture.sizex != 200 || cube->etexture.sizex != 200)
+		return (-1);
+	cube->wtexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
+		cube->p->west, &cube->wtexture.sizex, &cube->wtexture.sizey);
+	// if (!cube->wtexture.img_ptr)
+	// 	return (-1);
+	cube->wtexture.img_addr = mlx_get_data_addr(cube->wtexture.img_ptr, \
+		&cube->wtexture.bits_per_pixel, &cube->wtexture.line_length, \
+		&cube->wtexture.endian);
+	if (cube->wtexture.sizex != 200 || cube->wtexture.sizey != 200)
+		return (-1);
+	return (0);
+}
+
+void	wich_wall(t_data *cube, double tmp[2], double posx, double posy)
+{
+	if (cube->map[(int)tmp[1]][(int)posx] == '1')
 	{
-		if (tmpy > posy)
+		if (tmp[1] > posy)
+			cube->ray = 'N';
+		else
+			cube->ray = 'S';
+	}
+	if (cube->map[(int)posy][(int)tmp[0]] == '1')
+	{
+		if (tmp[0] > posx)
 			cube->ray = 'W';
 		else
 			cube->ray = 'E';
 	}
-	if (cube->map[(int)posy][(int)tmpx] == '1')
-	{
-		if (tmpx > posx)
-			cube->ray = 'S';
-		else
-			cube->ray = 'N';
-	}
-}
-
-double	ft_modf(double nbr, double div)
-{
-	// double	mod;
-
-	// mod = 0.0;
-	// mod = nbr - (nbr / div);
-	// return (mod);
-	int	i;
-
-	i = nbr / div;
-	nbr -= div * i;
-	return (nbr);
 }
 
 void	draw_textures(t_data *cube, double index, double jdex)
 {
-	// printf("%f, %f\n", cube->raypos[0], cube->raypos[1]);
+	int		pos_pix[2];
+
+	pos_pix[1] = \
+		(((jdex - ((1080 / 2) - cube->limit)) * 200) / cube->limit / 2);
 	if (cube->ray == 'S')
 	{
-		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->stexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 6888733);
+		pos_pix[0] = (cube->raypos[0] - floor(cube->raypos[0])) * 200;
 	}
+	else if (cube->ray == 'N')
+	{
+		pos_pix[0] = (cube->raypos[0] - floor(cube->raypos[0])) * 200;
+		pos_pix[0] = cube->ntexture.sizex - 1 - pos_pix[0];
+	}
+	else if (cube->ray == 'E')
+	{
+		pos_pix[0] = (cube->raypos[1] - floor(cube->raypos[1])) * 200;
+		pos_pix[0] = cube->etexture.sizex - 1 - pos_pix[0];
+	}
+	else if (cube->ray == 'W')
+	{
+		pos_pix[0] = (cube->raypos[1] - floor(cube->raypos[1])) * 200;
+	}
+	put_texture(cube, index, jdex, pos_pix);
+}
+
+static void	put_texture(t_data *cube, double index, double jdex, int pos_pix[2])
+{
 	if (cube->ray == 'N')
-	{
-		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->ntexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 1709590);
-	}
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, \
+		my_mlx_pixel_get(&cube->ntexture, pos_pix[0], pos_pix[1]));
+	if (cube->ray == 'S')
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, \
+		my_mlx_pixel_get(&cube->stexture, pos_pix[0], pos_pix[1]));
 	if (cube->ray == 'E')
-	{
-		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->etexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 1183503);
-	}
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, \
+		my_mlx_pixel_get(&cube->etexture, pos_pix[0], pos_pix[1]));
 	if (cube->ray == 'W')
-	{
-		// my_mlx_pixel_put(cube, (int)index, (int)jdex, my_mlx_pixel_get(&cube->wtexture, (int)(ft_modf(cube->raypos[0], 10) * 1000), (int)(ft_modf(cube->raypos[1], 10) * 1000)));
-		my_mlx_pixel_put(cube, (int)index, (int)jdex, 3149069);
-	}
+		my_mlx_pixel_put(cube, (int)index, (int)jdex, \
+		my_mlx_pixel_get(&cube->wtexture, pos_pix[0], pos_pix[1]));
 }

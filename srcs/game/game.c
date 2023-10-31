@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/29 15:34:16 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/10/31 09:57:32 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,16 @@ int	do_cube(t_data *cube)
 	window.mlx_ptr = mlx_init();
 	if (window.mlx_ptr == 0x0)
 		exit(1);
-	window.mlx_win = mlx_new_window(window.mlx_ptr, WINWIDTH, WINHEIGHT, "cub3d");
+	window.mlx_win = mlx_new_window(window.mlx_ptr, \
+		WINWIDTH, WINHEIGHT, "cub3d");
 	window.img_ptr = mlx_new_image(window.mlx_ptr, WINWIDTH, WINHEIGHT);
 	window.img_addr = mlx_get_data_addr(window.img_ptr, &window.bits_per_pixel, \
 	&window.line_length, &window.endian);
-	cube->count = 0;
 	cube->window = window;
+	if (open_textures(cube) == -1)
+		return (1);
 	get_player(cube);
-	open_textures(cube);
-	draw_minimap(cube);
-	draw_player(cube);
-	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.img_ptr, 0, 0);
+	display_game(cube);
 	mlx_hook(window.mlx_win, 2, (1L << 0), press_keys, cube);
 	mlx_hook(window.mlx_win, 3, (1L << 1), release_keys, cube);
 	mlx_loop_hook(window.mlx_ptr, loop, cube);
