@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:19:39 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:22:26 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	free_parse(t_parse *p, int complete[6], int i)
 			free(p);
 		}
 	}
-	return ;
 }

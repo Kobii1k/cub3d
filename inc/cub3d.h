@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/01 15:19:51 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:25:44 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ t_data		*init_cube(char *str);
 int			map_verif(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
+int			verified_value(char c);
+int			check_void(int i, int j, int size, char **map);
 
 
 void		ft_memset_int(int *tab, int c, int len);

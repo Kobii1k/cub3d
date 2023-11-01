@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:20:09 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:26:17 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,28 +90,6 @@ int	create_map(int fd, t_data *cube)
 	return (0);
 }
 
-int	verified_value(char c)
-{
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-int	check_void(int i, int j, int size, char **map)
-{
-	char c;
-
-	c = map[j][i];
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		c = '0';
-	if (i == 0 || j == 0 || j == size - 1 || map[j][i + 1] == '\0')
-		return (printf("j : %d i : %d -- %c\n", j, i, map[j][i]), (c == '1' || ft_isspace(c)));
-	if (c == '0')
-		return (verified_value(map[j][i - 1]) && verified_value(map[j][i + 1])
-		&& verified_value(map[j + 1][i]) &&	verified_value(map[j - 1][i]));
-	if (ft_isspace(c) || c == '1')
-		return (1);
-	return (0);
-}
-
 int	map_check(char **map, int size)
 {
 	int		i;
@@ -166,9 +144,11 @@ int	get_params(char *str, t_parse *p, int complete[6], int index)
 				return (1);
 		}
 		else
+		{
 			if (path_values(p, str, i, n) == 0)
 				return (complete[n] = 1, 0);
 			else
 				return (1);
+		}
 	}
 }

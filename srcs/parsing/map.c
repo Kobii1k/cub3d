@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/31 16:34:08 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:25:24 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,27 @@ void	print_map(t_data *cube)
 		ft_printf("%s\n", cube->map[index]);
 		index++;
 	}
+}
+
+int	verified_value(char c)
+{
+	return (c == '1'
+		|| c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	check_void(int i, int j, int size, char **map)
+{
+	char	c;
+
+	c = map[j][i];
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		c = '0';
+	if (i == 0 || j == 0 || j == size - 1 || map[j][i + 1] == '\0')
+		return ((c == '1' || ft_isspace(c)));
+	if (c == '0')
+		return (verified_value(map[j][i - 1]) && verified_value(map[j][i + 1])
+		&& verified_value(map[j + 1][i]) && verified_value(map[j - 1][i]));
+	if (ft_isspace(c) || c == '1')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:07:54 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 14:33:05 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:27:01 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	check_player(char c, int *player)
 			return (ft_printf("map error : multiple player value\n"), 0);
 	}
 	return (1);
-
 }
 
 int	which_param(char *str, int index)
