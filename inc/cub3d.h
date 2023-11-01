@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/31 09:32:10 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:30:34 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ typedef struct s_data
 	int			x1;
 	int			y1;
 	char		ray;
+	double		opposite;
+	double		adj;
 	double		raypos[2];
 	double		limit;
 	t_frame		window;

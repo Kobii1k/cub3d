@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:32 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/30 16:47:37 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:25:31 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,38 @@
 static	double	find_angle(t_data *cube, double tmp_angle);
 static void		raycast(t_data *cube, double r, int index, double tmp_angle);
 static int		test_angle(t_data *cube, double tmp_angle, double r);
+
+// void	draw_raycast(t_data *cube)
+// {
+// 	int		index;
+// 	double	r;
+// 	double	tmp_angle;
+
+// 	index = 0;
+// 	r = 0;
+// 	tmp_angle = cube->j1.player_angle - cube->j1.fov / 2;
+// 	cube->adj = 10;
+// 	cube->opposite = tan(tmp_angle) * cube->adj;
+// 	while (index < WINWIDTH)
+// 	{
+// 		r = 0.01;
+// 		while (r < 800)
+// 		{
+// 			if (test_angle(cube, tmp_angle, r) == 1)
+// 			{
+// 				raycast(cube, r, index, find_angle(cube, tmp_angle));
+// 				break ;
+// 			}
+// 			if (test_angle(cube, tmp_angle, r + 1) == 1)
+// 				r += 0.01;
+// 			else
+// 				r += 1;
+// 		}
+// 		index++;
+// 		cube->opposite--;
+// 		tmp_angle = atan(cube->opposite / cube->adj);
+// 		}
+// }
 
 void	draw_raycast(t_data *cube)
 {
@@ -83,7 +115,7 @@ static void	raycast(t_data *cube, double r, int index, double tmp_angle)
 	int		jdex;
 
 	jdex = 0;
-	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 4000);
+	limit = floor((1 / (r * cosf(tmp_angle * M_PI / 180))) * 10000);
 	cube->limit = limit;
 	while (jdex <= WINHEIGHT)
 	{
