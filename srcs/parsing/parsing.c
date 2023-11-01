@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/31 18:27:48 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:20:09 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	input_values(t_parse *p, int fd, int complete[6])
 			while (ft_isspace(str[i]))
 				i++;
 			if (get_params(str, p, complete, i))
-				return (free(str), free_parse(p, complete), 1);
+				return (free(str), free_parse(p, complete, 0), 1);
 			n++;
 			if (n == 6)
 				break ;
@@ -90,6 +90,11 @@ int	create_map(int fd, t_data *cube)
 	return (0);
 }
 
+int	verified_value(char c)
+{
+	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
 int	check_void(int i, int j, int size, char **map)
 {
 	char c;
@@ -97,36 +102,20 @@ int	check_void(int i, int j, int size, char **map)
 	c = map[j][i];
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		c = '0';
-
-
-
 	if (i == 0 || j == 0 || j == size - 1 || map[j][i + 1] == '\0')
-		return (c == '1' || ft_isspace(c));
-
+		return (printf("j : %d i : %d -- %c\n", j, i, map[j][i]), (c == '1' || ft_isspace(c)));
 	if (c == '0')
-	{
-		return ((map[j][i - 1] == '1' || map[j][i - 1] == '0') &&
-		(map[j][i + 1] == '1' || map[j][i + 1] == '0') &&
-		(map[j - 1][i] == '1' || map[j - 1][i] == '0') &&
-		(map[j + 1][i] == '1' || map[j + 1][i] == '0'));
-	}
-	if (ft_isspace(c))
-	{
-		return ((map[j][i - 1] == '1' || ft_isspace(map[j][i - 1])) &&
-		(map[j][i + 1] == '1' || ft_isspace(map[j][i + 1])) &&
-		(map[j - 1][i] == '1' || ft_isspace(map[j - 1][i])) &&
-		(map[j + 1][i] == '1' || ft_isspace(map[j + 1][i])));
-	}
-	return (ft_printf("map error : unknown value detected\n"), 0);
-	return (ft_printf("map error : must be closed by walls\n"), 0);
-	return (ft_printf("map error : unknown value detected\n"), 0);
+		return (verified_value(map[j][i - 1]) && verified_value(map[j][i + 1])
+		&& verified_value(map[j + 1][i]) &&	verified_value(map[j - 1][i]));
+	if (ft_isspace(c) || c == '1')
+		return (1);
+	return (0);
 }
 
 int	map_check(char **map, int size)
 {
 	int		i;
 	int		j;
-	int		border;
 	int		player;
 
 	j = 0;
@@ -136,8 +125,9 @@ int	map_check(char **map, int size)
 		i = 0;
 		while (map[j][i])
 		{
-			border = check_void(i, j, size, map);
-			if (verified_value(map[j][i], border, &player) == 0)
+			if (!check_void(i, j, size, map))
+				return (printf("map error : invalid map\n"), 1);
+			if (check_player(map[j][i], &player) == 0)
 				return (1);
 			i++;
 		}

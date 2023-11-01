@@ -6,13 +6,13 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:07:54 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/31 18:29:05 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 14:33:05 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	verified_value(char c, int *player)
+int	check_player(char c, int *player)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{

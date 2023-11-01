@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/31 16:07:06 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:19:39 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,32 @@ void	free_split(char **split)
 	return ;
 }
 
-void	free_parse(t_parse *p, int complete[6])
+void	free_parse(t_parse *p, int complete[6], int i)
 {
-	if (p)
+	if (i)
 	{
-		if (complete[0])
+		if (p)
+		{
 			free(p->north);
-		if (complete[1])
 			free(p->south);
-		if (complete[2])
 			free(p->east);
-		if (complete[3])
 			free(p->west);
-		free(p);
+		}
+	}
+	else
+	{
+		if (p)
+		{
+			if (complete[0])
+				free(p->north);
+			if (complete[1])
+				free(p->south);
+			if (complete[2])
+				free(p->east);
+			if (complete[3])
+				free(p->west);
+			free(p);
+		}
 	}
 	return ;
 }

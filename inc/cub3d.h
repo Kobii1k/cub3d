@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/31 16:34:33 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:19:51 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void		move_right(t_data *cube);
 
 //parsing
 t_parse		*parse_map(t_data *cube, int fd);
-int			verified_value(char c, int border, int *player);
+int			check_player(char c, int *player);
 int			which_param(char *str, int index);
 long		create_rgb(int r, int g, int b);
 long		translate_rgb(char *str);
@@ -169,7 +169,7 @@ int			ft_isspace(char c);
 
 //free
 void		free_split(char **split);
-void		free_parse(t_parse *p, int complete[6]);
+void		free_parse(t_parse *p, int complete[6], int i);
 
 
 
