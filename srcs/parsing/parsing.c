@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:26:17 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:36:34 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,15 @@ int	create_map(int fd, t_data *cube)
 	if (!str)
 		return (1);
 	cube->map = malloc(sizeof(char *) * 60);
-	while (str && str[0] != '1')
+	while (str)
 	{
-		if (str[0] && str[0] != ' ' && str[0] != '1')
-			return (ft_printf("map error : unexpected value\n"), 1);
+		if (str[0])
+		{
+			if (ft_isspace(str[0]) || str[0] == '1')
+				break ;
+			else
+				return (ft_printf("map error : unexpected value\n"), 1);
+		}
 		free(str);
 		str = get_next_line(fd);
 	}
