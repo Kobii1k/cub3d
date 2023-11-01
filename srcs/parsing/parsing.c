@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/10/29 13:28:10 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 15:26:17 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	input_values(t_parse *p, int fd, int complete[6]);
 int	create_map(int fd, t_data *cube);
 int	map_check(char **map, int size);
-int	get_params(char *str, t_parse *p, int complete[6]);
+int	get_params(char *str, t_parse *p, int complete[6], int index);
 
 t_parse	*parse_map(t_data *cube, int fd)
 {
@@ -38,16 +38,20 @@ int	input_values(t_parse *p, int fd, int complete[6])
 {
 	int		n;
 	char	*str;
+	int		i;
 
 	n = 0;
 	str = get_next_line(fd);
-	ft_memset(complete, 0, 6);
+	ft_memset_int(complete, 0, 6);
 	while (str)
 	{
 		if (str[0])
 		{
-			if (get_params(str, p, complete))
-				return (free(str), free_parse(p), 1);
+			i = 0;
+			while (ft_isspace(str[i]))
+				i++;
+			if (get_params(str, p, complete, i))
+				return (free(str), free_parse(p, complete, 0), 1);
 			n++;
 			if (n == 6)
 				break ;
@@ -90,7 +94,6 @@ int	map_check(char **map, int size)
 {
 	int		i;
 	int		j;
-	int		border;
 	int		player;
 
 	j = 0;
@@ -100,11 +103,10 @@ int	map_check(char **map, int size)
 		i = 0;
 		while (map[j][i])
 		{
-			if (i == 0 || j == 0 || j == size - 1 || map[j][i + 1] == '\0')
-				border = 1;
-			if (verified_value(map[j][i], border, &player) == 0)
+			if (!check_void(i, j, size, map))
+				return (printf("map error : invalid map\n"), 1);
+			if (check_player(map[j][i], &player) == 0)
 				return (1);
-			border = 0;
 			i++;
 		}
 		j++;
@@ -114,27 +116,39 @@ int	map_check(char **map, int size)
 	return (0);
 }
 
-int	get_params(char *str, t_parse *p, int complete[6])
+int	get_params(char *str, t_parse *p, int complete[6], int index)
 {
 	int	n;
 	int	i;
 
-	n = which_param(str);
+	n = which_param(str, index);
 	if (n == -1)
 		return (ft_printf("map error : values not found\n"), 1);
 	else
 	{
 		if (complete[n] == 1)
 			return (ft_printf("map error : duplicate value\n"), 1);
-		complete[n] = 1;
-		i = 2;
 		if (n == 4 || n == 5)
-			i = 1;
-		while (str[i] == ' ')
-			i++;
-		if (n != 4 && n != 5)
-			return (path_values(p, str, i, n));
+			i = index + 1;
 		else
-			return (rgb_to_hex(p, str, i, n));
+			i = index + 2;
+		if (!ft_isspace(str[i]))
+			return (ft_printf("map error : space needed between values\n"), 1);
+		while (ft_isspace(str[i]))
+			i++;
+		if ((n == 4 || n == 5))
+		{
+			if (rgb_to_hex(p, str, i, n) == 0)
+				return (complete[n] = 1, 0);
+			else
+				return (1);
+		}
+		else
+		{
+			if (path_values(p, str, i, n) == 0)
+				return (complete[n] = 1, 0);
+			else
+				return (1);
+		}
 	}
 }

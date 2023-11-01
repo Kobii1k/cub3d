@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/31 13:30:34 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:35:12 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,21 +151,31 @@ void		move_right(t_data *cube);
 
 //parsing
 t_parse		*parse_map(t_data *cube, int fd);
-int			verified_value(char c, int border, int *player);
-int			which_param(char *str);
+int			check_player(char c, int *player);
+int			which_param(char *str, int index);
 long		create_rgb(int r, int g, int b);
 long		translate_rgb(char *str);
 int			rgb_to_hex(t_parse *p, char *str, int i, int n);
 int			path_values(t_parse *p, char *str, int i, int n);
 int			create_map(int fd, t_data *cube);
-int			check_map(char *str);
 t_data		*init_cube(char *str);
+int			map_verif(char *str);
 void		print_map(t_data *cube);
 int			verif_map_name(char *str);
+int			verified_value(char c);
+int			check_void(int i, int j, int size, char **map);
+
+
+void		ft_memset_int(int *tab, int c, int len);
+char		*ft_strdup_nospace(const char *s1);
+int			ft_isspace(char c);
+
 
 //free
 void		free_split(char **split);
-void		free_parse(t_parse *p);
+void		free_parse(t_parse *p, int complete[6], int i);
+
+
 
 int			open_textures(t_data *cube);
 void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
