@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 09:42:31 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:29:09 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	open_textures(t_data *cube)
 	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, \
 		&cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, \
 		&cube->ntexture.endian);
-	if (cube->ntexture.sizex != 200 || cube->ntexture.sizey != 200)
-		return (-1);
+	// if (cube->ntexture.sizex != 200 || cube->ntexture.sizey != 200)
+	// 	return (-1);
 	cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->south, &cube->stexture.sizex, &cube->stexture.sizey);
 	if (!cube->stexture.img_ptr)
@@ -35,8 +35,8 @@ int	open_textures(t_data *cube)
 	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, \
 	&cube->stexture.bits_per_pixel, &cube->stexture.line_length, \
 	&cube->stexture.endian);
-	if (cube->stexture.sizex != 200 || cube->stexture.sizey != 200)
-		return (-1);
+	// if (cube->stexture.sizex != 200 || cube->stexture.sizey != 200)
+	// 	return (-1);
 	return (next_open_textures(cube));
 }
 
@@ -49,8 +49,8 @@ static int	next_open_textures(t_data *cube)
 	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, \
 		&cube->etexture.bits_per_pixel, &cube->etexture.line_length, \
 		&cube->etexture.endian);
-	if (cube->etexture.sizex != 200 || cube->etexture.sizex != 200)
-		return (-1);
+	// if (cube->etexture.sizex != 200 || cube->etexture.sizex != 200)
+	// 	return (-1);
 	cube->wtexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->west, &cube->wtexture.sizex, &cube->wtexture.sizey);
 	if (!cube->wtexture.img_ptr)
@@ -58,8 +58,8 @@ static int	next_open_textures(t_data *cube)
 	cube->wtexture.img_addr = mlx_get_data_addr(cube->wtexture.img_ptr, \
 		&cube->wtexture.bits_per_pixel, &cube->wtexture.line_length, \
 		&cube->wtexture.endian);
-	if (cube->wtexture.sizex != 200 || cube->wtexture.sizey != 200)
-		return (-1);
+	// if (cube->wtexture.sizex != 200 || cube->wtexture.sizey != 200)
+	// 	return (-1);
 	return (0);
 }
 
