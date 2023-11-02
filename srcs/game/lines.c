@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 17:03:38 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/02 17:26:39 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	do_line(t_data *cube, double tmp_angle, int tab[35][2], int oldtab[35][2])
 	int	pixel;
 	int	r;
 
-	r = 0;
+	r = 4;
 	while (r < 35)
 	{
 		x = r * cos(tmp_angle * M_PI / 180) + 105;

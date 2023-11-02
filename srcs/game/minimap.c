@@ -6,13 +6,14 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:13:41 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/02 17:09:59 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/02 17:29:55 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 void	put_minimap(t_data *cube, double x, double y, char c);
+void	draw_outline(t_data *cube);
 
 void	draw_minimap(t_data *cube)
 {
@@ -39,19 +40,47 @@ void	draw_minimap(t_data *cube)
 		}
 		y += 0.99999;
 	}
+	draw_outline(cube);
 	return ;
+}
+
+void	draw_outline(t_data *cube)
+{
+	int	x;
+	int	y;
+
+	x = 200;
+	while (x < 203)
+	{
+		y = 0;
+		while (y < 203)
+		{
+			my_mlx_pixel_put(cube, x, y, 0x000000);
+			y++;
+		}
+		x++;
+	}
+	y = 200;
+	while (y < 203)
+	{
+		x = 0;
+		while (x < 203)
+		{
+			my_mlx_pixel_put(cube, x, y, 0x000000);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	put_minimap(t_data *cube, double x, double y, char c)
 {
 	if (c == '1')
-		my_mlx_pixel_put(cube, x, y, 0x005500);
+		my_mlx_pixel_put(cube, x, y, 0x000088);
 	else if (c == '0')
 		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
-	else
-		my_mlx_pixel_put(cube, x, y, 0x005500);
 }
 
 void	draw_player(t_data *cube)
