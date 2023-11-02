@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:22:26 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/01 17:06:16 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i])
+	while (split[i] && split[i][0])
 	{
 		free(split[i]);
 		i++;
@@ -50,7 +50,6 @@ void	free_parse(t_parse *p, int complete[6], int i)
 				free(p->east);
 			if (complete[3])
 				free(p->west);
-			free(p);
 		}
 	}
 }
