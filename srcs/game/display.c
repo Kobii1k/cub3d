@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/01 08:08:55 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:32:49 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	display_game(t_data *cube)
 	draw_raycast(cube);
 	draw_minimap(cube);
 	draw_player(cube);
+	draw_vision(cube);
 	mlx_put_image_to_window(cube->window.mlx_ptr, cube->window.mlx_win, \
 	cube->window.img_ptr, 0, 0);
 	return (0);

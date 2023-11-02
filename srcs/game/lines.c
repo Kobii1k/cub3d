@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/31 09:56:13 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:36:50 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ void	do_line(t_data *cube, double tmp_angle, int r)
 		y1 = r * sin(tmp_angle * M_PI / 180);
 		posx = floor((cube->j1.posx + x1) / 10);
 		posy = floor((cube->j1.posy + y1) / 10);
+		my_mlx_pixel_put(cube, 105 + x1, \
+		105 + y1, 0xFE0000);
 		if (((posx >= 0) && (posy >= 0)) && ((cube->map[posy][posx] == '1')))
-		{
-			my_mlx_pixel_put(cube, cube->j1.posx + x1, \
-			cube->j1.posy + y1, 0xFE0000);
 			break ;
-		}
 		r++;
 	}
 }
