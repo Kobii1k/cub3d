@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 14:28:52 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:17:41 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	do_cube(t_data *cube)
 	&window.line_length, &window.endian);
 	cube->window = window;
 	if (open_textures(cube) == -1)
-		return (1);
+		return (free_on_error(cube), 1);
 	get_player(cube);
 	display_game(cube);
 	mlx_hook(window.mlx_win, 2, (1L << 0), press_keys, cube);
