@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:13:41 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 18:48:00 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/02 17:09:59 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	put_minimap(t_data *cube, double x, double y, char c)
 		my_mlx_pixel_put(cube, x, y, 0x005500);
 	else if (c == '0')
 		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
-	else if (ft_isalpha(c))
+	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		my_mlx_pixel_put(cube, x, y, 0xF0F0F0);
-	else if (c == ' ')
+	else
 		my_mlx_pixel_put(cube, x, y, 0x005500);
 }
 
