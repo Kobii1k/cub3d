@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 15:19:01 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:16:09 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,6 @@ int			ft_isspace(char c);
 void		free_split(char **split);
 void		free_parse(t_parse *p, int complete[6], int i);
 void		free_on_error(t_data *cube);
+void		free_textures(t_data *cube, int situation);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 15:54:03 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:14:19 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int	open_textures(t_data *cube)
 	cube->ntexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->north, &cube->ntexture.sizex, &cube->ntexture.sizey);
 	if (!cube->ntexture.img_ptr)
-		return (-1);
+		return (2);
 	cube->ntexture.img_addr = mlx_get_data_addr(cube->ntexture.img_ptr, \
 		&cube->ntexture.bits_per_pixel, &cube->ntexture.line_length, \
 		&cube->ntexture.endian);
 	cube->stexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->south, &cube->stexture.sizex, &cube->stexture.sizey);
 	if (!cube->stexture.img_ptr)
-		return (-1);
+		return (3);
 	cube->stexture.img_addr = mlx_get_data_addr(cube->stexture.img_ptr, \
 	&cube->stexture.bits_per_pixel, &cube->stexture.line_length, \
 	&cube->stexture.endian);
 	cube->etexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->east, &cube->etexture.sizex, &cube->etexture.sizey);
 	if (!cube->etexture.img_ptr)
-		return (-1);
+		return (4);
 	cube->etexture.img_addr = mlx_get_data_addr(cube->etexture.img_ptr, \
 		&cube->etexture.bits_per_pixel, &cube->etexture.line_length, \
 		&cube->etexture.endian);
@@ -48,7 +48,7 @@ static int	next_open_textures(t_data *cube)
 	cube->wtexture.img_ptr = mlx_xpm_file_to_image(cube->window.mlx_ptr, \
 		cube->p->west, &cube->wtexture.sizex, &cube->wtexture.sizey);
 	if (!cube->wtexture.img_ptr)
-		return (-1);
+		return (5);
 	cube->wtexture.img_addr = mlx_get_data_addr(cube->wtexture.img_ptr, \
 		&cube->wtexture.bits_per_pixel, &cube->wtexture.line_length, \
 		&cube->wtexture.endian);
