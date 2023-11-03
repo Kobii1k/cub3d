@@ -6,11 +6,13 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 14:28:52 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:55:56 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	init_textures(t_data *cube);
 
 void	get_player(t_data *cube)
 {
@@ -50,8 +52,8 @@ int	do_cube(t_data *cube)
 	window.img_addr = mlx_get_data_addr(window.img_ptr, &window.bits_per_pixel, \
 	&window.line_length, &window.endian);
 	cube->window = window;
-	if (open_textures(cube) == -1)
-		return (1);
+	if (init_textures(cube) != 0)
+		return (printf("error in textures\n"), -1);
 	get_player(cube);
 	display_game(cube);
 	mlx_hook(window.mlx_win, 2, (1L << 0), press_keys, cube);
@@ -85,4 +87,17 @@ t_player	init_player(int index, int jdex, char c)
 	j1.vect[1] = j1.cam_dy;
 	j1.fov = 60;
 	return (j1);
+}
+
+int	init_textures(t_data *cube)
+{
+	int	situation;
+
+	situation = 0;	
+	situation = open_textures(cube);
+	if (situation > 1)
+		return (free_textures(cube, situation), -1);
+	else if (situation < 0)
+		return (free_textures(cube, 5), -1);
+	return (0);
 }

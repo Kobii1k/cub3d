@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/01 16:35:12 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:16:09 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,13 @@ int			release_keys(int key, t_data *cube);
 int			close_window(t_data *cube);
 int			loop(t_data *cube);
 
+//collision
+void		move_up(t_data *cube);
+void		move_down(t_data *cube);
+void		move_left(t_data *cube);
+void		move_right(t_data *cube);
+void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
+
 //drawing.c
 void		draw_player(t_data *cube);
 void		draw_minimap(t_data *cube);
@@ -143,11 +150,7 @@ void		draw_lines(t_data *cube);
 void		draw_vision(t_data *cube);
 void		draw_raycast(t_data *cube);
 void		add_vect(t_data *cube);
-
-void		move_up(t_data *cube);
-void		move_down(t_data *cube);
-void		move_left(t_data *cube);
-void		move_right(t_data *cube);
+void		draw_textures(t_data *cube, double index, double jdex);
 
 //parsing
 t_parse		*parse_map(t_data *cube, int fd);
@@ -164,6 +167,7 @@ void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 int			verified_value(char c);
 int			check_void(int i, int j, int size, char **map);
+int			open_textures(t_data *cube);
 
 
 void		ft_memset_int(int *tab, int c, int len);
@@ -174,12 +178,7 @@ int			ft_isspace(char c);
 //free
 void		free_split(char **split);
 void		free_parse(t_parse *p, int complete[6], int i);
-
-
-
-int			open_textures(t_data *cube);
-void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
-// void	wich_wall(t_data *cube, double tmpx, double tmpy, double posx, double posy);
-void		draw_textures(t_data *cube, double index, double jdex);
+void		free_on_error(t_data *cube);
+void		free_textures(t_data *cube, int situation);
 
 #endif

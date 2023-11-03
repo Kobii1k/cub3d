@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/02 14:51:21 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/03 13:13:57 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_parse	*parse_map(t_data *cube, int fd)
 int	input_values(t_parse *p, int fd, int complete[6])
 {
 	int		n;
-	char	*str;
 	int		i;
+	char	*str;
 
 	n = 0;
 	str = get_next_line(fd);

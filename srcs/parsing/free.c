@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 17:06:16 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:04:54 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i] && split[i][0])
+	while (split[i])
 	{
 		free(split[i]);
 		i++;
@@ -52,4 +52,49 @@ void	free_parse(t_parse *p, int complete[6], int i)
 				free(p->west);
 		}
 	}
+}
+
+void	free_textures(t_data *cube, int situation)
+{
+	if (situation == 2)
+		(void) situation;
+	else if (situation == 3)
+		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
+	else if (situation == 4)
+	{		
+		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
+	}
+	else if (situation == 5)
+	{
+		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->etexture.img_ptr);
+	}
+	else
+	{
+		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->etexture.img_ptr);
+		mlx_destroy_image(cube->window.mlx_ptr, cube->wtexture.img_ptr);
+	}
+	free_on_error(cube);
+}
+
+void	free_on_error(t_data *cube)
+{
+	int	index;
+
+	index = 0;
+	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
+	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);	
+	mlx_destroy_display(cube->window.mlx_ptr);
+	while (index < cube->height && cube->map[index])
+		free(cube->map[index++]);
+	free(cube->map);
+	free_parse(cube->p, NULL, 1);
+	free(cube->p);
+	free(cube->keys);
+	free(cube->window.mlx_ptr);
+	free(cube);
 }

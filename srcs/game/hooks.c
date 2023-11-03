@@ -6,14 +6,13 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 09:37:23 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:06:56 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		release_keys(int key, t_data *cube);
-void	free_textures(t_data *cube);
 
 int	press_keys(int key, t_data *cube)
 {
@@ -78,16 +77,15 @@ int	close_window(t_data *cube)
 	int	index;
 
 	index = 0;
+	mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
+	mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
+	mlx_destroy_image(cube->window.mlx_ptr, cube->etexture.img_ptr);
+	mlx_destroy_image(cube->window.mlx_ptr, cube->wtexture.img_ptr);
 	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
-	free_textures(cube);
 	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
 	mlx_destroy_display(cube->window.mlx_ptr);
 	while (index < cube->height && cube->map[index])
-	{
-		free(cube->map[index]);
-		index++;
-	}
-	printf("%d\n", index);
+		free(cube->map[index++]);
 	free(cube->map);
 	free_parse(cube->p, NULL, 1);
 	free(cube->p);
@@ -95,12 +93,4 @@ int	close_window(t_data *cube)
 	free(cube->window.mlx_ptr);
 	free(cube);
 	exit (0);
-}
-
-void	free_textures(t_data *cube)
-{
-	mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
-	mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
-	mlx_destroy_image(cube->window.mlx_ptr, cube->etexture.img_ptr);
-	mlx_destroy_image(cube->window.mlx_ptr, cube->wtexture.img_ptr);
 }
