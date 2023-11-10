@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/03 13:04:54 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:10:20 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ void	free_parse(t_parse *p, int complete[6], int i)
 	{
 		if (p)
 		{
-			free(p->north);
-			free(p->south);
-			free(p->east);
-			free(p->west);
+			return (free(p->north), free(p->south),
+				free(p->east), free(p->west), free(p));
 		}
 	}
 	else
@@ -50,6 +48,7 @@ void	free_parse(t_parse *p, int complete[6], int i)
 				free(p->east);
 			if (complete[3])
 				free(p->west);
+			free(p);
 		}
 	}
 }
@@ -61,7 +60,7 @@ void	free_textures(t_data *cube, int situation)
 	else if (situation == 3)
 		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
 	else if (situation == 4)
-	{		
+	{
 		mlx_destroy_image(cube->window.mlx_ptr, cube->ntexture.img_ptr);
 		mlx_destroy_image(cube->window.mlx_ptr, cube->stexture.img_ptr);
 	}
@@ -87,7 +86,7 @@ void	free_on_error(t_data *cube)
 
 	index = 0;
 	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
-	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);	
+	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
 	mlx_destroy_display(cube->window.mlx_ptr);
 	while (index < cube->height && cube->map[index])
 		free(cube->map[index++]);

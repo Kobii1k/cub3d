@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/03 13:06:56 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:55 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,8 @@ int	close_window(t_data *cube)
 	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
 	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
 	mlx_destroy_display(cube->window.mlx_ptr);
-	while (index < cube->height && cube->map[index])
-		free(cube->map[index++]);
-	free(cube->map);
+	free_split(cube->map);
 	free_parse(cube->p, NULL, 1);
-	free(cube->p);
 	free(cube->keys);
 	free(cube->window.mlx_ptr);
 	free(cube);

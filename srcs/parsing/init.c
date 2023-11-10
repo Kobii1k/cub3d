@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:29:44 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:26:37 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 11:00:17 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ t_data	*init_cube(char *str)
 		return (close(fd), NULL);
 	cube->p = parse_map(cube, fd);
 	if (!cube->p)
-		return (NULL);
+		return (close(fd), free(cube), NULL);
 	cube->keys = malloc(sizeof(int) * 7);
 	if (!cube->keys)
-		return (close(fd), free(cube), NULL);
+		return (close(fd), free_parse(cube->p, NULL, 1), free(cube), NULL);
 	index = 1;
 	while (index <= ESCk)
 	{
