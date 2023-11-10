@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/03 10:16:09 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:31:21 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ enum {
 	LEFT_ARRk = 6,
 	ESCk = 7
 };
+
+// typedef struct s_lst
+// {
+// 	char	*str;
+// 	t_lst	*next;
+// }			t_lst;
 
 typedef struct s_parse
 {
@@ -168,7 +174,7 @@ int			verif_map_name(char *str);
 int			verified_value(char c);
 int			check_void(int i, int j, int size, char **map);
 int			open_textures(t_data *cube);
-
+int			translate_value(int count[2], t_parse *p, char *str, int complete[6]);
 
 void		ft_memset_int(int *tab, int c, int len);
 char		*ft_strdup_nospace(const char *s1);

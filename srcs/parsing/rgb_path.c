@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:30:44 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/01 15:27:10 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/03 18:14:49 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,27 @@ int	path_values(t_parse *p, char *str, int i, int n)
 			return (printf("malloc error\n"), 1);
 	}
 	return (0);
+}
+
+int	translate_value(int count[2], t_parse *p, char *str, int complete[6])
+{
+	int	i;
+	int	n;
+
+	i = count[0];
+	n = count[1];
+	if ((n == 4 || n == 5))
+	{
+		if (rgb_to_hex(p, str, i, n) == 0)
+			return (complete[n] = 1, 0);
+		else
+			return (1);
+	}
+	else
+	{
+		if (path_values(p, str, i, n) == 0)
+			return (complete[n] = 1, 0);
+		else
+			return (1);
+	}
 }

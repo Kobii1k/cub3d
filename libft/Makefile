@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 14:30:05 by cprojean          #+#    #+#              #
-#    Updated: 2023/11/02 16:09:09 by cprojean         ###   ########.fr        #
+#    Updated: 2023/11/03 18:50:04 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,15 @@ SRCS =				ft_atoi.c               \
 					ft_putlnbr.c            \
 					ft_putnbr.c             \
 					ft_putstr.c             \
+					ft_lstnew.c             \
+					ft_lstadd_front.c       \
+					ft_lstlast.c            \
+					ft_lstsize.c            \
+					ft_lstadd_back.c        \
+					ft_lstdelone.c          \
+					ft_lstclear.c           \
+					ft_lstiter.c            \
+					ft_lstmap.c             \
 
 
 SRCS_bonus =		ft_lstnew.c             \
@@ -106,7 +115,7 @@ all:				${NAME}
 bonus :				${OBJS} ${OBJS_bonus}
 					ar ${ARFLAGS} ${NAME} ${OBJS} ${OBJS_bonus}
 
-%.o : %.c			
+%.o : %.c
 					$(CC) -c $(CFLAGS) $< -o $@
 
 clean:

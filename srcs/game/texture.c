@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:42:18 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/03 10:14:19 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:57:45 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	draw_textures(t_data *cube, double index, double jdex)
 {
 	int		pos_pix[2];
 
+	pos_pix[0] = 0;
 	pos_pix[1] = \
 		(((jdex - ((1080 / 2) - cube->limit)) * 200) / cube->limit / 2);
 	if (cube->ray == 'S')
