@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:12:16 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/10 11:47:55 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:49:49 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	close_window(t_data *cube)
 	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
 	mlx_destroy_window(cube->window.mlx_ptr, cube->window.mlx_win);
 	mlx_destroy_display(cube->window.mlx_ptr);
-	free_split(cube->map);
+	free_map(cube->map, cube->height);
 	free_parse(cube->p, NULL, 1);
 	free(cube->keys);
 	free(cube->window.mlx_ptr);

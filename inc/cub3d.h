@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/03 18:31:21 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:50:45 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int			ft_isspace(char c);
 
 
 //free
+void		free_map(char **map, int index);
 void		free_split(char **split);
 void		free_parse(t_parse *p, int complete[6], int i);
 void		free_on_error(t_data *cube);

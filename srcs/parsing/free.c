@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/10 10:10:20 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:51:09 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@ void	free_split(char **split)
 
 	i = 0;
 	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
+		free(split[i++]);
 	free(split);
+	return ;
+}
+
+void	free_map(char **map, int index)
+{
+	int	i;
+
+	i = 0;
+	while (i < index && map[i])
+		free(map[i++]);
+	free(map);
 	return ;
 }
 

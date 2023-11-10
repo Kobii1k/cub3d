@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/10 12:01:01 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:48:55 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_parse	*parse_map(t_data *cube, int fd)
 	if (create_map(fd, cube))
 		return (free_parse(p, NULL, 1), NULL);
 	if (map_check(cube->map, cube->height))
-		return (free_parse(p, NULL, 1), free_split(cube->map), NULL);
+		return (free_parse(p, NULL, 1), free_map(cube->map, cube->height), NULL);
 	return (p);
 }
 
@@ -95,6 +95,25 @@ t_list	*ft_lstnew_dup(char *content)
 	return (new);
 }
 
+int	fill_map(t_data *cube, t_list *l)
+{
+	int		index;
+	t_list	*tmp;
+
+	cube->map = malloc(sizeof(char *) * cube->height);
+	if (!cube->map)
+			return (free_lst(&l), printf("malloc error\n"), 1);
+	index = 0;
+	tmp = l;
+	while (index < cube->height)
+	{
+		cube->map[index] = ft_strdup(l->content);
+		l = l->next;
+		index++;
+	}
+	return (free_lst(&tmp), 0);
+}
+
 int	get_map(t_data *cube, char *str, int fd)
 {
 	int		index;
@@ -105,28 +124,20 @@ int	get_map(t_data *cube, char *str, int fd)
 	l = NULL;
 	while (str)
 	{
-		tmp = ft_lstnew_dup(str);
-		if (!tmp)
-			return (free_lst(&l), free(str), printf("malloc error\n"), 1);
-		ft_lstadd_back(&l, tmp);
+		if (str[0])
+		{
+			tmp = ft_lstnew_dup(str);
+			if (!tmp)
+				return (free_lst(&l), free(str), printf("malloc error\n"), 1);
+			ft_lstadd_back(&l, tmp);
+			index++;
+		}
 		free(str);
 		str = get_next_line(fd);
-		index++;
 	}
+	free(str);
 	cube->height = index;
-	cube->map = malloc(sizeof(char *) * cube->height);
-	if (!cube->map)
-			return (printf("malloc error\n"), 1);
-	index = 0;
-	tmp = l;
-	while (index < cube->height)
-	{
-		cube->map[index] = ft_strdup(l->content);
-		l = l->next;
-		index++;
-	}
-	free_lst(&tmp);
-	return (0);
+	return (fill_map(cube, l));
 }
 
 int	create_map(int fd, t_data *cube)
@@ -148,7 +159,10 @@ int	create_map(int fd, t_data *cube)
 		free(str);
 		str = get_next_line(fd);
 	}
-	return (get_map(cube, str, fd));
+	if (!str)
+		return (ft_printf("map error : couldn't find map\n"), 1);
+	else
+		return (get_map(cube, str, fd));
 }
 
 int	map_check(char **map, int size)
