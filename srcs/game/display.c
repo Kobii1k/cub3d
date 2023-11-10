@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:58:44 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 17:25:33 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:02:23 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	my_mlx_pixel_get(t_frame *image, int x, int y)
 
 int	display_game(t_data *cube)
 {
-	// mlx_clear_window(cube->mlx_ptr, cube->mlx_win);
 	mlx_destroy_image(cube->window.mlx_ptr, cube->window.img_ptr);
 	cube->window.img_ptr = \
 	mlx_new_image(cube->window.mlx_ptr, WINWIDTH, WINHEIGHT);

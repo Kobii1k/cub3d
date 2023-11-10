@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:24:58 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/02 17:26:39 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:01:40 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_reduce_opacity(int color)
 	double	green;
 	double	blue;
 
-	red = (double)((color & 0xFF0000) >> 16) * 0.7;
-	green = (double)((color & 0x00FF00) >> 8) * 0.7;
-	blue = (double)(color & 0x0000FF) * 0.7;
+	red = (double)((color & 0xFF0000) >> 16)*0.7;
+	green = (double)((color & 0x00FF00) >> 8)*0.7;
+	blue = (double)(color & 0x0000FF)*0.7;
 	return (blue + ((int)green << 8) + ((int)red << 16));
 }
 
@@ -38,7 +38,8 @@ int	is_in_tab(int tab[35][2], int x, int y)
 	return (0);
 }
 
-void	do_line(t_data *cube, double tmp_angle, int tab[35][2], int oldtab[35][2])
+void	do_line(t_data *cube, double tmp_angle,
+	int tab[35][2], int oldtab[35][2])
 {
 	int	x;
 	int	y;

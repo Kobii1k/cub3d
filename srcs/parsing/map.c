@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/10 09:16:47 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:07:38 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	check_void(int i, int j, int size, char **map)
 	char	c;
 
 	c = map[j][i];
-
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		c = '0';
 	if (i == 0 || j == 0 || j == size - 1 || map[j][i + 1] == '\0')

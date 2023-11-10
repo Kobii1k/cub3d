@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/03 12:55:56 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:02:05 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	init_textures(t_data *cube);
 
 void	get_player(t_data *cube)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -93,7 +93,7 @@ int	init_textures(t_data *cube)
 {
 	int	situation;
 
-	situation = 0;	
+	situation = 0;
 	situation = open_textures(cube);
 	if (situation > 1)
 		return (free_textures(cube, situation), -1);
