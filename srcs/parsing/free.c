@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/10 12:51:09 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 16:11:14 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	free_on_error(t_data *cube)
 		free(cube->map[index++]);
 	free(cube->map);
 	free_parse(cube->p, NULL, 1);
-	free(cube->p);
 	free(cube->keys);
 	free(cube->window.mlx_ptr);
 	free(cube);

@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 15:41:54 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:10:11 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	input_values(t_parse *p, int fd, int complete[6], int n)
 
 	str = get_next_line(fd);
 	if (!str)
-		return (free(p), 1);
+		return (ft_printf("map error : empty map\n"), free(p), 1);
 	ft_memset_int(complete, 0, 6);
 	while (str)
 	{
