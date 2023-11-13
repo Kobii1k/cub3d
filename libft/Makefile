@@ -6,13 +6,11 @@
 #    By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 14:30:05 by cprojean          #+#    #+#              #
-#    Updated: 2023/11/03 18:50:04 by mgagne           ###   ########.fr        #
+#    Updated: 2023/11/13 14:16:09 by mgagne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =				libft.a
-
-NAME_bonus =		libftbonus.a
 
 CC =				cc
 
@@ -80,16 +78,6 @@ SRCS =				ft_atoi.c               \
 					ft_lstmap.c             \
 
 
-SRCS_bonus =		ft_lstnew.c             \
-					ft_lstadd_front.c       \
-					ft_lstlast.c            \
-					ft_lstsize.c            \
-					ft_lstadd_back.c        \
-					ft_lstdelone.c          \
-					ft_lstclear.c           \
-					ft_lstiter.c            \
-					ft_lstmap.c             \
-
 PRINTF		=		ft_print_address.c		\
 					ft_printf.c				\
 					ft_convert_hexa_maj.c	\
@@ -105,27 +93,20 @@ OBJS =				${SRCS:.c=.o}
 ${NAME} :			${OBJS}
 					ar ${ARFLAGS} ${NAME} ${OBJS}
 
-OBJS_bonus =		${SRCS_bonus:.c=.o}
-
-${NAME_bonus} :		${OBJS} ${OBJS_bonus}
-					ar ${ARFLAGS} ${NAME} ${OBJS} ${OBJS_bonus}
-
 all:				${NAME}
 
-bonus :				${OBJS} ${OBJS_bonus}
-					ar ${ARFLAGS} ${NAME} ${OBJS} ${OBJS_bonus}
 
 %.o : %.c
 					$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-					${RM} ${OBJS} ${OBJS_bonus}
+					${RM} ${OBJS}
 
 fclean:				clean
 					${RM} ${NAME}
 
 re :				fclean all
 
-.PHONY :			all make clean fclean re bonus
+.PHONY :			all make clean fclean re
 
-.SILENT : $(OBJS) $(OBJS_bonus) $(NAME) $(NAME_bonus)
+.SILENT : $(OBJS) $(NAME)
