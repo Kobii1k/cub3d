@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/10 13:07:01 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 13:36:00 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void		wich_wall(t_data *cube, double tmp[2], double posx, double posy);
 
 //drawing.c
 void		draw_player(t_data *cube);
-void		draw_minimap(t_data *cube);
+void		draw_minimap(t_data *cube, int len, double x, double y);
 void		draw_square(t_data *cube, int color, int index, int jdex);
 void		draw_lines(t_data *cube);
 void		draw_vision(t_data *cube);

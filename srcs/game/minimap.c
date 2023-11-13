@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:13:41 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/02 17:29:55 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 13:35:35 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 void	put_minimap(t_data *cube, double x, double y, char c);
 void	draw_outline(t_data *cube);
 
-void	draw_minimap(t_data *cube)
+int	get_line_len(t_data *cube, int y)
 {
-	double	x;
-	double	y;
+	if (y >= 0 && floor(y / 10) < cube->height && cube->map[(int)floor(y / 10)])
+		return (ft_strlen(cube->map[(int)floor(y / 10)]));
+	else
+		return (-1);
+}
+
+void	draw_minimap(t_data *cube, int len, double x, double y)
+{
 	double	xkeep;
 	double	ykeep;
 
@@ -28,10 +34,12 @@ void	draw_minimap(t_data *cube)
 	ykeep = y + 200;
 	while (y <= ykeep)
 	{
+		len = get_line_len(cube, y);
 		x = xkeep - 200;
 		while (x <= xkeep)
 		{
 			if (x >= 0 && y >= 0 && floor(y / 10) < cube->height
+				&& (int)floor(x / 10) < len
 				&& cube->map[(int)floor(y / 10)][(int)floor(x / 10)])
 				put_minimap(cube, (floor(x - xkeep + 200)),
 					(floor(y - ykeep + 200)),
@@ -41,7 +49,6 @@ void	draw_minimap(t_data *cube)
 		y += 0.99999;
 	}
 	draw_outline(cube);
-	return ;
 }
 
 void	draw_outline(t_data *cube)

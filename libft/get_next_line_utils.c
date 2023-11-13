@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:48:24 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/01 16:56:33 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:16:42 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ ssize_t	where_backslash(char *buf)
 	return (-1);
 }
 
-size_t	ft_strlen(char *str)
-{
-	size_t	index;
+// size_t	ft_strlen(char *str)
+// {
+// 	size_t	index;
 
-	if (!str)
-		return (0);
-	index = 0;
-	while (str[index])
-	{
-		index++;
-	}
-	return (index);
-}
+// 	if (!str)
+// 		return (0);
+// 	index = 0;
+// 	while (str[index])
+// 	{
+// 		index++;
+// 	}
+// 	return (index);
+// }
 
 char	*ft_strnjoin(char *s1, char *s2, size_t index)
 {
