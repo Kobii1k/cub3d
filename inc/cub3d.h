@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/13 13:36:00 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:40:39 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,17 +174,16 @@ int			verif_map_name(char *str);
 int			verified_value(char c);
 int			check_void(int i, int j, int size, char **map);
 int			open_textures(t_data *cube);
-int			translate_value(int count[2], t_parse *p, char *str, int complete[6]);
+int			translate_value(int count[2], t_parse *p, \
+char *str, int complete[6]);
 void		free_lst(t_list **l);
 t_list		*ft_lstnew_dup(char *content);
 int			fill_map(t_data *cube, t_list *l);
 int			get_map(t_data *cube, char *str, int fd);
 
-
 void		ft_memset_int(int *tab, int c, int len);
 char		*ft_strdup_nospace(const char *s1);
 int			ft_isspace(char c);
-
 
 //free
 void		free_map(char **map, int index);

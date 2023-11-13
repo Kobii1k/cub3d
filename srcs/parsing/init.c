@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:29:44 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 15:06:26 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:45:07 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,6 @@ int	fill_map(t_data *cube, t_list *l)
 	return (free_lst(&tmp), 0);
 }
 
-// int	ez_tover(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	return (i);
-// }
-
 int	get_map(t_data *cube, char *str, int fd)
 {
 	int		index;
@@ -123,7 +115,7 @@ int	get_map(t_data *cube, char *str, int fd)
 	free(str);
 	str = get_next_line(fd);
 	if (str && str[0])
-		return (free_lst(&l), free(str), ft_printf("map error : empty line\n"), 1);
+		return (free_lst(&l), free(str), printf("map error: empty line\n"), 1);
 	cube->height = index;
 	return (free(str), fill_map(cube, l));
 }

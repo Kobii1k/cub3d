@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:48:24 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/13 13:16:42 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:40:05 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	join_it(char *s2, char *array, int runner, int sizearray);
 
 void	ft_buf_reset(char *buf, int index)
 {
@@ -81,12 +83,16 @@ char	*ft_strnjoin(char *s1, char *s2, size_t index)
 	}
 	while (runner < sizearray + index)
 	{
-		if (s2[runner - sizearray] != 10)
-			array[runner] = s2[runner - sizearray];
-		else
-			array[runner] = '\0';
+		join_it(s2, array, runner, sizearray);
 		runner++;
 	}
-	array[runner] = '\0';
-	return (free(s1), array);
+	return (array[runner] = '\0', free(s1), array);
+}
+
+void	join_it(char *s2, char *array, int runner, int sizearray)
+{
+	if (s2[runner - sizearray] != 10)
+		array[runner] = s2[runner - sizearray];
+	else
+		array[runner] = '\0';
 }

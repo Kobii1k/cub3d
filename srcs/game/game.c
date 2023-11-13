@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 23:10:35 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/10 13:02:05 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:41:33 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	do_cube(t_data *cube)
 	ft_bzero(&window, sizeof(t_frame));
 	window.mlx_ptr = mlx_init();
 	if (window.mlx_ptr == 0x0)
-		exit(1);
+		return (free_parse(cube->p, NULL, 1), free(cube->keys),
+			free_map(cube->map, cube->height), free(cube), -1);
 	window.mlx_win = mlx_new_window(window.mlx_ptr, \
 		WINWIDTH, WINHEIGHT, "cub3d");
 	window.img_ptr = mlx_new_image(window.mlx_ptr, WINWIDTH, WINHEIGHT);
@@ -63,8 +64,7 @@ int	do_cube(t_data *cube)
 	mlx_loop(window.mlx_ptr);
 	mlx_destroy_image(window.mlx_ptr, window.img_ptr);
 	mlx_destroy_window(window.mlx_ptr, window.mlx_win);
-	free(window.mlx_ptr);
-	return (0);
+	return (free(window.mlx_ptr), 0);
 }
 
 t_player	init_player(int index, int jdex, char c)
