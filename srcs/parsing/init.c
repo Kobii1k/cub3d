@@ -6,7 +6,7 @@
 /*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:29:44 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 15:45:07 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:48:53 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_data	*init_cube(char *str)
 		cube->keys[index] = 0;
 		index++;
 	}
-	print_map(cube);
 	return (close(fd), cube->count = 0, cube);
 }
 

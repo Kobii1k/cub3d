@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:09:46 by cprojean          #+#    #+#             */
-/*   Updated: 2023/10/11 16:01:01 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:55:24 by cprojean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("Your args sucks so much I can't even believe this\n");
+		ft_printf("🤷❓❓❓❓🤷❓❓❓❓❓ ARGS ❓❓❓❓❓🤷❓❓❓❓🤷\n");
 		return (1);
 	}
 	cube = init_cube(argv[1]);
