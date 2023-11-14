@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:29:44 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 16:07:34 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:43:04 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ t_data	*init_cube(char *str)
 		return (NULL);
 	cube = malloc(sizeof(t_data));
 	if (!cube)
-		return (close(fd), NULL);
+		return (printf("malloc error\n"), close(fd), NULL);
 	cube->p = parse_map(cube, fd);
 	if (!cube->p)
-		return (close(fd), free(cube), NULL);
+		return (printf("malloc error\n"), close(fd), free(cube), NULL);
 	cube->keys = malloc(sizeof(int) * 7);
 	if (!cube->keys)
-		return (close(fd), free_parse(cube->p, NULL, 1),
-			free_map(cube->map, cube->height), free(cube), NULL);
+		return (printf("malloc error\n"), free_parse(cube->p, NULL, 1),
+			close(fd), free_map(cube), free(cube), NULL);
 	index = 0;
 	while ((index + 1) <= ESCk)
 	{
@@ -63,10 +63,10 @@ t_list	*ft_lstnew_dup(char *content)
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		return (NULL);
+		return (printf("malloc error\n"), NULL);
 	new->content = ft_strdup(content);
 	if (!new->content)
-		return (NULL);
+		return (printf("malloc error\n"), NULL);
 	new->next = NULL;
 	return (new);
 }

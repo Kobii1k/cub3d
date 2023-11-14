@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:11:03 by cprojean          #+#    #+#             */
-/*   Updated: 2023/11/13 15:40:39 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:41:16 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ int			path_values(t_parse *p, char *str, int i, int n);
 int			create_map(int fd, t_data *cube);
 t_data		*init_cube(char *str);
 int			map_verif(char *str);
-void		print_map(t_data *cube);
 int			verif_map_name(char *str);
 int			verified_value(char c);
 int			check_void(int i, int j, int size, char **map);
@@ -186,7 +185,7 @@ char		*ft_strdup_nospace(const char *s1);
 int			ft_isspace(char c);
 
 //free
-void		free_map(char **map, int index);
+void		free_map(t_data *cube);
 void		free_split(char **split);
 void		free_parse(t_parse *p, int complete[6], int i);
 void		free_on_error(t_data *cube);

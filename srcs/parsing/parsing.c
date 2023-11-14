@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:36:14 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 16:10:11 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:42:13 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_parse	*parse_map(t_data *cube, int fd)
 		return (free_parse(p, NULL, 1), NULL);
 	if (map_check(cube->map, cube->height))
 		return (free_parse(p, NULL, 1),
-			free_map(cube->map, cube->height), NULL);
+			free_map(cube), NULL);
 	return (p);
 }
 

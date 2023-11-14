@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:06:02 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/10 13:07:38 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/11/14 14:38:43 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,6 @@ int	verif_map_name(char *str)
 	if (str[tmp + 4])
 		return (-1);
 	return (0);
-}
-
-void	print_map(t_data *cube)
-{
-	int	index;
-
-	if (!cube->map)
-		ft_printf("Error with the map\n");
-	index = 0;
-	while (index < cube->height)
-	{
-		ft_printf("%s\n", cube->map[index]);
-		index++;
-	}
 }
 
 int	verified_value(char c)

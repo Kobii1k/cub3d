@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:23:01 by mgagne            #+#    #+#             */
-/*   Updated: 2023/11/13 16:11:14 by cprojean         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:41:59 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	free_split(char **split)
 	return ;
 }
 
-void	free_map(char **map, int index)
+void	free_map(t_data *cube)
 {
 	int	i;
 
 	i = 0;
-	while (i < index && map[i])
-		free(map[i++]);
-	free(map);
+	while (i < cube->height && cube->map[i])
+		free(cube->map[i++]);
+	free(cube->map);
 	return ;
 }
 
