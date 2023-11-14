@@ -6,7 +6,7 @@
 #    By: cprojean <cprojean@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 11:36:52 by cprojean          #+#    #+#              #
-#    Updated: 2023/11/13 13:38:59 by cprojean         ###   ########.fr        #
+#    Updated: 2023/11/14 13:20:14 by cprojean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,28 +50,28 @@ DIR_INCLUDES = inc/
 
 HEADERS = $(DIR_INCLUDES)cub3d.h
 
-SRCS =	$(DIR_SRCS)main.c		\
-		$(DIR_GAME)display.c	\
-		$(DIR_GAME)hooks.c		\
-		$(DIR_GAME)game.c		\
-		$(DIR_GAME)minimap.c	\
-		$(DIR_GAME)loop.c		\
-		$(DIR_PARS)map.c		\
+SRCS =	$(DIR_SRCS)main.c			\
+		$(DIR_GAME)display.c		\
+		$(DIR_GAME)hooks.c			\
+		$(DIR_GAME)game.c			\
+		$(DIR_GAME)minimap.c		\
+		$(DIR_GAME)loop.c			\
+		$(DIR_PARS)map.c			\
 		$(DIR_PARS)parsing.c		\
 		$(DIR_PARS)parsing_utils.c	\
-		$(DIR_PARS)free.c		\
+		$(DIR_PARS)free.c			\
 		$(DIR_PARS)rgb_path.c		\
-		$(DIR_PARS)init.c		\
-		$(DIR_GAME)lines.c		\
-		$(DIR_GAME)raycast.c	\
-		$(DIR_GAME)move.c		\
-		$(DIR_GAME)texture.c	\
+		$(DIR_PARS)init.c			\
+		$(DIR_GAME)lines.c			\
+		$(DIR_GAME)raycast.c		\
+		$(DIR_GAME)move.c			\
+		$(DIR_GAME)texture.c		\
 
 OBJS =	$(patsubst %.c, $(DIR_OBJ)%.o, $(SRCS))
 
 all	:		makelib $(NAME)
 
-$(DIR_OBJ)%.o: %.c $(HEADERS)
+$(DIR_OBJ)%.o: %.c $(LIB) $(HEADERS)
 				@mkdir -p $(shell dirname $@)
 				$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_INCLUDES) -Iminilibx -Ilibft
 
@@ -97,4 +97,4 @@ re :		fclean all
 
 .PHONY : libft all clean re fclean
 
-.SILENT :	$(OBJS) $(MLXc) $(NAME) libft
+# .SILENT :	$(OBJS) $(MLXc) $(NAME) libft
